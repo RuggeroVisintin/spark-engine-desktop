@@ -1,0 +1,9 @@
+bin/sparkengine_desktop/SparkEngined.ilk
+bin/sparkengine_desktop/SparkEngined.exe
+bin/sparkengine_desktop/SparkEngined.pdb
+lib/sparkengine_desktop/cored.lib
+lib/sparkengine_desktop/engined.lib
+lib/sparkengine_desktop/platformd.lib
+lib/sparkengine_desktop/rendererd.lib
+lib/sparkengine_desktop/resourced.lib
+lib/sparkengine_desktop/uid.lib
