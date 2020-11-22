@@ -141,7 +141,7 @@ void Renderer::enableAdditiveBlending(command::EnableAdditiveBlending command)
 		} else {
 			glDepthMask(GL_TRUE);
 			glDisable(GL_BLEND);
-			glDepthFunc(GL_LESS);
+			glDepthFunc(GL_LEQUAL);
 		}
 	}
 }

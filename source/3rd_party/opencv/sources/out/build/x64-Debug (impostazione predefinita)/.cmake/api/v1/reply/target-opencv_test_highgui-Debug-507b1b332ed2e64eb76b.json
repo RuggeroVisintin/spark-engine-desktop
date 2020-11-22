@@ -1,0 +1,702 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/opencv_test_highguid.exe"
+		},
+		{
+			"path" : "bin/opencv_test_highguid.pdb"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"ocv_add_accuracy_tests",
+			"link_directories",
+			"target_link_libraries",
+			"add_definitions",
+			"include_directories",
+			"ocv_include_directories",
+			"ocv_include_modules",
+			"ocv_module_include_directories",
+			"ocv_add_perf_tests"
+		],
+		"files" : 
+		[
+			"cmake/OpenCVModule.cmake",
+			"modules/highgui/CMakeLists.txt",
+			"cmake/OpenCVUtils.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 330,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 819,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 243,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 821,
+				"parent" : 1
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 284,
+				"parent" : 0
+			},
+			{
+				"command" : 9,
+				"file" : 1,
+				"line" : 331,
+				"parent" : 0
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 739,
+				"parent" : 6
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 449,
+				"parent" : 7
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 421,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 11
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 13
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 15
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 17
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 19
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 21
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 23
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 25
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 445,
+				"parent" : 7
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 27
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 808,
+				"parent" : 1
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 449,
+				"parent" : 29
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 421,
+				"parent" : 30
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 31
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 33
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 35
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 28,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 37
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 22,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 39
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 41
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 378,
+				"parent" : 43
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 44
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 43,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 244,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W4 /GR /EHa  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  -fsigned-char /wd4251 /wd4275 /wd4589 /wd4359 /MP8  /MDd /Zi /Ob0 /Od /RTC1 "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 5,
+					"define" : "HIGHGUI_EXPORTS"
+				},
+				{
+					"define" : "_VARIADIC_MAX=10"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 10,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/perf"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/video/include"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/calib3d/include"
+				},
+				{
+					"backtrace" : 16,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/features2d/include"
+				},
+				{
+					"backtrace" : 18,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/include"
+				},
+				{
+					"backtrace" : 20,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/imgproc/include"
+				},
+				{
+					"backtrace" : 22,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/flann/include"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/core/include"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/ts/include"
+				},
+				{
+					"backtrace" : 28,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)/modules/highgui"
+				},
+				{
+					"backtrace" : 28,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/src"
+				},
+				{
+					"backtrace" : 32,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/test"
+				},
+				{
+					"backtrace" : 34,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/libjasper"
+				},
+				{
+					"backtrace" : 36,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)/3rdparty/libtiff"
+				},
+				{
+					"backtrace" : 36,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/libtiff"
+				},
+				{
+					"backtrace" : 38,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/libpng"
+				},
+				{
+					"backtrace" : 40,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/libjpeg"
+				},
+				{
+					"backtrace" : 42,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)/3rdparty/zlib"
+				},
+				{
+					"backtrace" : 42,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/zlib"
+				},
+				{
+					"backtrace" : 45,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)"
+				},
+				{
+					"backtrace" : 46,
+					"isSystem" : true,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/openexr/Half"
+				},
+				{
+					"backtrace" : 46,
+					"isSystem" : true,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/openexr/Iex"
+				},
+				{
+					"backtrace" : 46,
+					"isSystem" : true,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/openexr/IlmThread"
+				},
+				{
+					"backtrace" : 46,
+					"isSystem" : true,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/openexr/Imath"
+				},
+				{
+					"backtrace" : 46,
+					"isSystem" : true,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/openexr/IlmImf"
+				},
+				{
+					"backtrace" : 47,
+					"isSystem" : true,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/3rdparty/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "opencv_imgproc::@46089d46ac6964f10538"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_flann::@b7c07563ccf30005c216"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_core::@90e83aff1e86c0750a9d"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_features2d::@4f2b1ecb2cf869bde395"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_highgui::@eec24f45586c5b1a2074"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_video::@08df6c0062966df3c8f9"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_calib3d::@e8558e004ddb3d41eff9"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "opencv_ts::@c974cb34bd96d8662201"
+		}
+	],
+	"id" : "opencv_test_highgui::@eec24f45586c5b1a2074",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /W4 /GR /EHa  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  -fsigned-char /wd4251 /wd4275 /wd4589 /wd4359 /MP8  /MDd /Zi /Ob0 /Od /RTC1",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64  /debug /INCREMENTAL  /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-LIBPATH:\"D:\\Documenti\\SparkEngine_Desktop - Copia\\source\\3rd_party\\opencv\\sources\\3rdparty\\lib\"",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_ts2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_calib3d2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_video2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_features2d2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_highgui2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "comctl32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "gdi32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "ole32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "setupapi.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "ws2_32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "vfw32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_flann2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_imgproc2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "..\\..\\lib\\opencv_core2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "opencv_test_highgui",
+	"nameOnDisk" : "opencv_test_highguid.exe",
+	"paths" : 
+	{
+		"build" : "modules/highgui",
+		"source" : "modules/highgui"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Src",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10
+			]
+		},
+		{
+			"name" : "Include",
+			"sourceIndexes" : 
+			[
+				11
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_basic_props.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_drawing.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_ffmpeg.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_fourcc.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_framecount.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_grfmt.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_gui.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_positioning.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_video_io.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "modules/highgui/test/test_video_pos.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "modules/highgui/test/test_precomp.hpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

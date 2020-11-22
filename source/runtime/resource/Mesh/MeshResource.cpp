@@ -31,21 +31,18 @@ namespace SE
 					//tempVertex.uv = mesh.getGeometries()[j].getTexCoords()[mesh.getGeometries()[j].getTriangles()[i].txc[0]];
 
 					mVertices[(count * 3)] = tempVertex;
-					//indices[count * 3] = count * 3;
 
 					tempVertex.position = mesh.getGeometries()[j].getPositions()[mesh.getGeometries()[j].getTriangles()[i].pos[1]];
 					tempVertex.normal = mesh.getGeometries()[j].getNormals()[mesh.getGeometries()[j].getTriangles()[i].nor[1]];
 					//tempVertex.uv = mesh.getGeometries()[j].getTexCoords()[mesh.getGeometries()[j].getTriangles()[i].txc[1]];
 
 					mVertices[(count * 3) + 1] = tempVertex;
-					//indices[count * 3 + 1] = count * 3 + 1;
 
 					tempVertex.position = mesh.getGeometries()[j].getPositions()[mesh.getGeometries()[j].getTriangles()[i].pos[2]];
 					tempVertex.normal = mesh.getGeometries()[j].getNormals()[mesh.getGeometries()[j].getTriangles()[i].nor[2]];
 					//tempVertex.uv = mesh.getGeometries()[j].getTexCoords()[mesh.getGeometries()[j].getTriangles()[i].txc[2]];
 
 					mVertices[(count * 3) + 2] = tempVertex;
-					//indices[count * 3 + 2] = count * 3 + 2;
 
 					count++;
 				}

@@ -32,6 +32,11 @@ in V2f
 	vec3 eyePosition;		// position in eye space
 
 	vec2 texCoord;			// texCoord in model space	
+
+	mat4 modelViewProjection;
+	mat4 normalMatrix;
+	mat4 modelViewMatrix;
+	mat4 viewMatrix;
 } v2f;
 
 // outAttributes
@@ -90,15 +95,20 @@ float HalfLambert(in float NdotL)
 	return clamp(pow(NdotL * 0.5 + 0.5, 2), 0.0, 1.0);
 }
 
-vec3 toLinear(vec3 v) {
-  return pow(v, vec3(2.2f));
+vec3 gammaCorrected(vec3 v) {
+	//return v;  
+	return pow(v, vec3(1.0f/2.2f));
+}
+
+vec3 toLinearSpace(vec3 v) {
+	return pow(v, vec3(2.2f));
 }
 
 void main()
 {
 	vec3 N = normalize(v2f.eyeNormal);
 	vec3 V = normalize(-v2f.eyePosition);
-	vec3 L = normalize(uLight.position);
+	vec3 L = normalize(uLight.position * inverse(mat3(v2f.viewMatrix)));
 
 	float roughness = clamp(uMaterial.roughness, 0.02f, 1.0f);
 	float F0 = 0.16f * pow(uMaterial.reflectance, 2.0f);
@@ -116,6 +126,6 @@ void main()
 
 	float finalSpecular = saturate(specular);
 	vec3 specularColor = mix(uLight.color, uMaterial.kd, uMaterial.metalness);
-	vec3 finalColor = ((ambient + diffuse) * toLinear(uMaterial.kd) + finalSpecular * specularColor) * toLinear(uLight.color) * uLight.power;
+	vec3 finalColor = ambient + diffuse * uMaterial.kd + finalSpecular * specularColor * uLight.color * uLight.power;
         FS_fragColor = vec4(finalColor, 1.0f);
 }

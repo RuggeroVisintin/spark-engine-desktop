@@ -1,0 +1,422 @@
+{
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64",
+				"role" : "flags"
+			}
+		]
+	},
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/opencv_haartraining_engined.lib"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"include_directories",
+			"ocv_include_directories",
+			"ocv_include_modules"
+		],
+		"files" : 
+		[
+			"apps/haartraining/CMakeLists.txt",
+			"cmake/OpenCVUtils.cmake",
+			"cmake/OpenCVModule.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 8
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 10
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 12
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 14
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 16
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 18
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 418,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 20
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 22
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 378,
+				"parent" : 24
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 25
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W4 /GR /EHa  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  -fsigned-char /wd4251 /wd4275 /wd4589 /wd4359 /MP8  /MDd /Zi /Ob0 /Od /RTC1 "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"define" : "_VARIADIC_MAX=10"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/legacy/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/flann/include"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/features2d/include"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/video/include"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/calib3d/include"
+				},
+				{
+					"backtrace" : 15,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/objdetect/include"
+				},
+				{
+					"backtrace" : 17,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/include"
+				},
+				{
+					"backtrace" : 19,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/imgproc/include"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/core/include"
+				},
+				{
+					"backtrace" : 23,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/include/opencv"
+				},
+				{
+					"backtrace" : 23,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/apps/haartraining"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "opencv_imgproc::@46089d46ac6964f10538"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_flann::@b7c07563ccf30005c216"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_core::@90e83aff1e86c0750a9d"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_features2d::@4f2b1ecb2cf869bde395"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_highgui::@eec24f45586c5b1a2074"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_video::@08df6c0062966df3c8f9"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_ml::@b79385d0caec563eb03e"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_legacy::@f90574b02c9bb4d69e6f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_calib3d::@e8558e004ddb3d41eff9"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "opencv_objdetect::@7f5df5b9e7e68549eda2"
+		}
+	],
+	"id" : "opencv_haartraining_engine::@5992d90e17f35138538a",
+	"name" : "opencv_haartraining_engine",
+	"nameOnDisk" : "opencv_haartraining_engined.lib",
+	"paths" : 
+	{
+		"build" : "apps/haartraining",
+		"source" : "apps/haartraining"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				10,
+				11
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "apps/haartraining/_cvcommon.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "apps/haartraining/cvclassifier.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "apps/haartraining/_cvhaartraining.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "apps/haartraining/cvhaartraining.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "apps/haartraining/cvboost.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "apps/haartraining/cvcommon.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "apps/haartraining/cvhaarclassifier.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "apps/haartraining/cvhaartraining.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "apps/haartraining/cvsamples.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "apps/haartraining/cvsamplesoutput.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "apps/haartraining/cvsamplesoutput.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "apps/haartraining/ioutput.h",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

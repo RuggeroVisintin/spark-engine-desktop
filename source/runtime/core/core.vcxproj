@@ -22,32 +22,32 @@
     <ProjectGuid>{6A743E27-4CE4-44CE-A6D3-669975CACED0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>core</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -70,7 +70,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\platform;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\3rd_party\glew;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)platform;$(SolutionDir)..\3rd_party\glew;$(SolutionDir)..\3rd_party\opencv\build\include;$(SolutionDir)..\3rd_party\stb-master;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\lib\sparkengine_desktop</OutDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)platform;$(SolutionDir)..\3rd_party\glew;$(SolutionDir)..\3rd_party\opencv\build\include;$(SolutionDir)..\3rd_party\stb-master;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\..\lib\sparkengine_desktop</OutDir>
     <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
@@ -154,8 +159,8 @@
     <ClInclude Include="math\TranslationMatrix.h" />
     <ClInclude Include="math\Vec2.h" />
     <ClInclude Include="math\Vec3.h" />
-    <ClInclude Include="Parsers\cimg\CImg.h" />
-    <ClInclude Include="Parsers\jpeg\JpegParser.h" />
+    <ClInclude Include="Parsers\bitmap\BmpImage.h" />
+    <ClInclude Include="Parsers\bitmap\BmpParser.h" />
     <ClInclude Include="Parsers\obj\ObjGeometry.h" />
     <ClInclude Include="Parsers\obj\ObjMesh.h" />
     <ClInclude Include="Parsers\obj\ObjParser.h" />
@@ -168,7 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityComponentSystem\Component.cpp" />
-    <ClCompile Include="Parsers\jpeg\JpegParser.cpp" />
+    <ClCompile Include="Parsers\bitmap\BmpParser.cpp" />
     <ClCompile Include="Parsers\obj\ObjMesh.cpp" />
     <ClCompile Include="Parsers\obj\ObjParser.cpp" />
     <ClCompile Include="Parsers\spk\SpkParser.cpp" />

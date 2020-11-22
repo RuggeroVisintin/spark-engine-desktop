@@ -1,0 +1,994 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/opencv_contrib2413d.dll"
+		},
+		{
+			"path" : "lib/opencv_contrib2413d.lib"
+		},
+		{
+			"path" : "bin/opencv_contrib2413d.pdb"
+		}
+	],
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"ocv_create_module",
+			"ocv_define_module",
+			"install",
+			"ocv_install_target",
+			"target_link_libraries",
+			"include_directories",
+			"ocv_include_directories",
+			"ocv_include_modules",
+			"ocv_module_include_directories",
+			"ocv_add_accuracy_tests"
+		],
+		"files" : 
+		[
+			"cmake/OpenCVModule.cmake",
+			"modules/contrib/CMakeLists.txt",
+			"cmake/OpenCVUtils.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 676,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 572,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 621,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 478,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 577,
+				"parent" : 2
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 679,
+				"parent" : 1
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 808,
+				"parent" : 7
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 449,
+				"parent" : 8
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 421,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 10
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 12
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 14
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 16
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 18
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 20
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 22
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 24
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 26
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 28
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 30
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 32
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 34
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 36
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 38
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 40
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 42
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 445,
+				"parent" : 8
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 44
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 7,
+				"file" : 3,
+				"line" : 378,
+				"parent" : 46
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 47
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W4 /GR /EHa  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  -fsigned-char /wd4251 /wd4275 /wd4589 /wd4359 /MP8  /MDd /Zi /Ob0 /Od /RTC1 "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"define" : "CVAPI_EXPORTS"
+				},
+				{
+					"define" : "_VARIADIC_MAX=10"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 11,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/contrib/test"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/video/include"
+				},
+				{
+					"backtrace" : 15,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/calib3d/include"
+				},
+				{
+					"backtrace" : 17,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/features2d/include"
+				},
+				{
+					"backtrace" : 19,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/include"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/imgproc/include"
+				},
+				{
+					"backtrace" : 23,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/flann/include"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/core/include"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/ts/include"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/contrib/include"
+				},
+				{
+					"backtrace" : 31,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/nonfree/include"
+				},
+				{
+					"backtrace" : 33,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/ocl/include"
+				},
+				{
+					"backtrace" : 35,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/gpu/include"
+				},
+				{
+					"backtrace" : 37,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/photo/include"
+				},
+				{
+					"backtrace" : 39,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/objdetect/include"
+				},
+				{
+					"backtrace" : 41,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/legacy/include"
+				},
+				{
+					"backtrace" : 43,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/ml/include"
+				},
+				{
+					"backtrace" : 45,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)/modules/contrib"
+				},
+				{
+					"backtrace" : 45,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/contrib/src"
+				},
+				{
+					"backtrace" : 48,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 6,
+			"id" : "opencv_imgproc::@46089d46ac6964f10538"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_flann::@b7c07563ccf30005c216"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_core::@90e83aff1e86c0750a9d"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_features2d::@4f2b1ecb2cf869bde395"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_highgui::@eec24f45586c5b1a2074"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_video::@08df6c0062966df3c8f9"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_ml::@b79385d0caec563eb03e"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_legacy::@f90574b02c9bb4d69e6f"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_calib3d::@e8558e004ddb3d41eff9"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_ocl::@ed6afb20afc6704d8e50"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_gpu::@f885d8abf150e085774d"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_nonfree::@be433236d7bb89dc7bb8"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_objdetect::@7f5df5b9e7e68549eda2"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_photo::@7fc8438b288b9566f339"
+		}
+	],
+	"id" : "opencv_contrib::@18dfd7bf1ee5dd9dacd7",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 5,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 5,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/install/x64-Debug (impostazione predefinita)"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /NODEFAULTLIB:libc /DEBUG",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_nonfree2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_gpu2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_legacy2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_photo2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_ocl2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_calib3d2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_features2d2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_flann2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_ml2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_video2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_objdetect2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_highgui2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_imgproc2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_core2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "comctl32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "gdi32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "ole32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "setupapi.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "ws2_32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "vfw32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "opencv_contrib",
+	"nameOnDisk" : "opencv_contrib2413d.dll",
+	"paths" : 
+	{
+		"build" : "modules/contrib",
+		"source" : "modules/contrib"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Include",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4
+			]
+		},
+		{
+			"name" : "Src",
+			"sourceIndexes" : 
+			[
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				44,
+				45
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/include/opencv2/contrib/contrib.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/include/opencv2/contrib/detection_based_tracker.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/include/opencv2/contrib/hybridtracker.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/include/opencv2/contrib/openfabmap.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/include/opencv2/contrib/retina.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/adaptiveskindetector.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/ba.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/basicretinafilter.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/bowmsctrainer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/chamfermatching.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/chowliutree.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/colormap.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/colortracker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/contrib_init.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/detection_based_tracker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/facerec.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/featuretracker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/fuzzymeanshifttracker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/gencolors.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/hybridtracker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/imagelogpolprojection.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/inputoutput.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/lda.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/logpolar_bsm.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/magnoretinafilter.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/octree.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/openfabmap.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/parvoretinafilter.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/polyfit.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/retina.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/retinacolor.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/retinafilter.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/rgbdodometry.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/selfsimilarity.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/spinimages.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/contrib/src/stereovar.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/basicretinafilter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/imagelogpolprojection.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/magnoretinafilter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/parvoretinafilter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/precomp.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/retinacolor.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/retinafilter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/contrib/src/templatebuffer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "out/build/x64-Debug (impostazione predefinita)/cvconfig.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 3,
+			"path" : "out/build/x64-Debug (impostazione predefinita)/opencv2/opencv_modules.hpp",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

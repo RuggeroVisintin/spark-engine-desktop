@@ -2,6 +2,7 @@
 #define __MESHLOADER_H__
 
 #include <Assertion/Assert.h>
+#include <GFX\OpenGL\GLDevice.h>
 
 #include "../Material/MaterialResource.h"
 #include "MeshResource.h"
@@ -21,8 +22,8 @@ namespace SE
 
 		public:
 			MeshLoader(OsFileSystem* fileSystem,
-						const std::string& searchPath/*,
-						ResourceManager<Material>* materialManager*/)
+				const std::string& searchPath/*,
+				ResourceManager<Material>* materialManager*/)
 			{
 				SPARK_ASSERT(fileSystem != nullptr,
 					"MeshLoader::MeshLoader passed @param fileSystem is null");

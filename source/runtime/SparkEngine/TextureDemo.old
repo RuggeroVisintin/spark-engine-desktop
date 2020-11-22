@@ -1,0 +1,71 @@
+#include <Windows.h>
+
+#include <GFX\OpenGL\GLContext.h>
+#include <Win32\Win32WindowGL.h>
+#include <Renderer.h>
+#include <Parsers\bitmap\BmpParser.h>
+#include <Parsers\bitmap\BmpImage.h>
+
+#include <math/Frustum.h>
+#include <math/MathUtils.h>
+#include <frontend/RenderSystem.h>
+
+#include <FileSystem/FileSystem.h>
+#include <FileSystem/File.h>
+#include <Time/Win32/Win32HiResTimer.h>
+
+#include <math/Quat.h>
+#include <math/Transform.h>
+#include <GameObjects/GameObjects.h>
+#include <EntityComponentSystem/Entity.h>
+
+#include <frontend\CameraComponent.h>
+#include <frontend\LightComponent.h>
+#include <frontend\StaticMeshComponent.h>
+
+#include <Mesh\MeshLoader.h>
+#include <Mesh/MeshResource.h>
+#include <Shader/ShaderResource.h>
+#include <Material/MaterialResource.h>
+#include <Texture/TextureResource.h>
+
+#include <Renderer.h>
+#include <ShaderBlocks.h>
+
+#include <SparkEngine.h>
+
+int TextureDemo(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCmdShow)
+{
+	// window creation
+	Win32WindowGL window = Win32WindowGL(SE::platform::backend::GLContext::GLV_32, L"SparkEngine - while in dev");
+	window.show();
+
+	// device creation
+	SE::platform::backend::GLDevice* device = window.getGraphicsContext()->createGLDevice();
+
+	// engine configuration
+	SE::engine::EnginePathsConfig config;
+	if (!std::string(pCmdLine).empty()) {
+		config.rootPath = pCmdLine;
+	}
+	else {
+		// used while debugging on my pc, change to debug on other pcs
+		config.rootPath = "C:/Users/rugge/Documents/Visual Studio 2015/Projects/sparkengine_desktop/assets";
+	}
+
+	config.texturesFolder = "textures";
+	config.texturesKey = "TEXTURES";
+
+	// engine initialization
+	SE::engine::SparkEngine sparkEngine = SE::engine::SparkEngine(device, config);
+
+	SE::platform::filesystem::OsFile* bitmapFileHandle = sparkEngine.fileSystem.openFileRead("test.bmp", config.texturesKey);
+	SE::resource::Texture testTexture;
+
+	SE::core::parser::binary::bitmap::BmpImage bmpTestImage;
+	SE::core::parser::binary::bitmap::BmpParser().readBitmap(bmpTestImage, bitmapFileHandle);
+
+	testTexture.loadFromBMP(bmpTestImage);
+
+	return 0;
+}

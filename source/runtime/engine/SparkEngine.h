@@ -28,6 +28,9 @@ namespace SE
 
 			std::string		shadersFolder;
 			std::string		shadersKey;
+
+			std::string		texturesFolder;
+			std::string		texturesKey;
 		};
 
 		class SparkEngine
@@ -51,7 +54,7 @@ namespace SE
 			//void				initialize();
 			//void				initialize(GLDevice* gfx, EnginePathsConfig enginePaths);
 
-			void				update(SE::platform::backend::GLContext& context);
+			void				update(SE::platform::backend::GLContext& context, const float& deltaTime);
 			/*void				shutdown();*/							
 
 		private:

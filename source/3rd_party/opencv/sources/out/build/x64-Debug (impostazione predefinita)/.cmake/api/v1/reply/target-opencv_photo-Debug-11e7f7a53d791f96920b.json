@@ -1,0 +1,523 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/opencv_photo2413d.dll"
+		},
+		{
+			"path" : "lib/opencv_photo2413d.lib"
+		},
+		{
+			"path" : "bin/opencv_photo2413d.pdb"
+		}
+	],
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"ocv_create_module",
+			"ocv_define_module",
+			"install",
+			"ocv_install_target",
+			"target_link_libraries",
+			"include_directories",
+			"ocv_include_directories",
+			"ocv_include_modules",
+			"ocv_module_include_directories",
+			"ocv_add_perf_tests",
+			"ocv_add_accuracy_tests"
+		],
+		"files" : 
+		[
+			"cmake/OpenCVModule.cmake",
+			"modules/photo/CMakeLists.txt",
+			"cmake/OpenCVUtils.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 676,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 572,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 621,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 478,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 577,
+				"parent" : 2
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 680,
+				"parent" : 1
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 739,
+				"parent" : 7
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 449,
+				"parent" : 8
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 421,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 10
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 12
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 14
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 16
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 18
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 20
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 22
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 24
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 26
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 418,
+				"parent" : 9
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 28
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 445,
+				"parent" : 8
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 30
+			},
+			{
+				"command" : 11,
+				"file" : 0,
+				"line" : 679,
+				"parent" : 1
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 808,
+				"parent" : 32
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 449,
+				"parent" : 33
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 421,
+				"parent" : 34
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 35
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 7,
+				"file" : 3,
+				"line" : 378,
+				"parent" : 37
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 48,
+				"parent" : 38
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W4 /GR /EHa  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  -fsigned-char /wd4251 /wd4275 /wd4589 /wd4359 /MP8  /MDd /Zi /Ob0 /Od /RTC1 "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"define" : "CVAPI_EXPORTS"
+				},
+				{
+					"define" : "_VARIADIC_MAX=10"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 11,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/photo/perf"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/video/include"
+				},
+				{
+					"backtrace" : 15,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/calib3d/include"
+				},
+				{
+					"backtrace" : 17,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/features2d/include"
+				},
+				{
+					"backtrace" : 19,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/highgui/include"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/imgproc/include"
+				},
+				{
+					"backtrace" : 23,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/flann/include"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/core/include"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/ts/include"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/photo/include"
+				},
+				{
+					"backtrace" : 31,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)/modules/photo"
+				},
+				{
+					"backtrace" : 31,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/photo/src"
+				},
+				{
+					"backtrace" : 36,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/modules/photo/test"
+				},
+				{
+					"backtrace" : 39,
+					"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/build/x64-Debug (impostazione predefinita)"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				3,
+				4
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 6,
+			"id" : "opencv_imgproc::@46089d46ac6964f10538"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "opencv_core::@90e83aff1e86c0750a9d"
+		}
+	],
+	"id" : "opencv_photo::@7fc8438b288b9566f339",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 5,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 5,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "D:/Documenti/SparkEngine_Desktop - Copia/source/3rd_party/opencv/sources/out/install/x64-Debug (impostazione predefinita)"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /NODEFAULTLIB:libc /DEBUG",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_imgproc2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "..\\..\\lib\\opencv_core2413d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "opencv_photo",
+	"nameOnDisk" : "opencv_photo2413d.dll",
+	"paths" : 
+	{
+		"build" : "modules/photo",
+		"source" : "modules/photo"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Include",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2
+			]
+		},
+		{
+			"name" : "Src",
+			"sourceIndexes" : 
+			[
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				10,
+				11
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/include/opencv2/photo.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/include/opencv2/photo/photo.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/include/opencv2/photo/photo_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/photo/src/denoising.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "modules/photo/src/inpaint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/src/arrays.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/src/fast_nlmeans_denoising_invoker.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/src/fast_nlmeans_denoising_invoker_commons.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/src/fast_nlmeans_multi_denoising_invoker.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "modules/photo/src/precomp.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "out/build/x64-Debug (impostazione predefinita)/cvconfig.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 3,
+			"path" : "out/build/x64-Debug (impostazione predefinita)/opencv2/opencv_modules.hpp",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

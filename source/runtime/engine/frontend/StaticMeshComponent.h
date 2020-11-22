@@ -3,7 +3,6 @@
 
 #include "../../Core/EntityComponentSystem/Component.h"
 #include "../../Resource/Mesh/MeshResource.h"
-#include "../../Resource/Material/MaterialResource.h"
 
 namespace SE
 {

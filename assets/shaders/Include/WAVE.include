@@ -1,0 +1,4 @@
+float wave(float x, float z, vec2 direction)
+{
+    return amplitude * sin(dot(direction,vec2(x,z))*w + (uEngine.deltaTime / 1000)*phase);
+}

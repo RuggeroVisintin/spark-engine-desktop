@@ -3,6 +3,7 @@
 
 #include "../Resource.h"
 #include "../Shader/ShaderResource.h"
+#include "../Texture/TextureResource.h"
 
 #include <math/Vec3.h>
 #include <SmartPtrs/SharedPtr.h>
@@ -35,6 +36,9 @@ namespace SE
 				float roughness;
 				float specularity;
 				float metalness;
+
+				// TODO: add diffuse texture
+				//ResourceHandle	diffuseTextureHandle;
 			};
 
 		public:

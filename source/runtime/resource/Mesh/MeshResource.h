@@ -65,8 +65,8 @@ namespace SE
 				}
 			};
 
-			struct MeshVertexHash{
-				size_t operator()(const MeshVertex &o) const{
+			struct MeshVertexHash {
+				size_t operator()(const MeshVertex &o) const {
 					return std::hash<float>()(o.position.getX()) ^ std::hash<float>()(o.position.getY())
 						^ std::hash<float>()(o.position.getZ()) ^ std::hash<float>()(o.normal.getX())
 						^ std::hash<float>()(o.normal.getY()) ^ std::hash<float>()(o.position.getZ())
@@ -93,7 +93,7 @@ namespace SE
 			}
 
 			Mesh
-				(const std::vector<MeshVertex>& vertices,
+			(const std::vector<MeshVertex>& vertices,
 				const std::vector<unsigned int>& indices)
 			{
 				mVertices = vertices;
@@ -123,7 +123,7 @@ namespace SE
 			const std::vector<Geometry>&					getGeometries() const { return mGeometries; }
 
 			SE::platform::backend::GLVertexBufferHandle		getVertexBuffer() const { return mVertexBuffer; }
-			SE::platform::backend::GLIndexBufferHandle		getIndexBuffer() const  { return mIndexBuffer; }
+			SE::platform::backend::GLIndexBufferHandle		getIndexBuffer() const { return mIndexBuffer; }
 
 			unsigned int									getVerticesCount() const { return mVerticesCount; }
 			unsigned int									getIndicesCount() const { return mIndicesCount; }

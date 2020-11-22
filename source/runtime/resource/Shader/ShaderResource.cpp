@@ -57,14 +57,18 @@ namespace SE
 			for (std::vector<ConstantDefinition>::iterator it = mConstantDefinitions.begin(); it != mConstantDefinitions.end(); it++) {
 				
 				location = graphicsDevice->getUniformBufferLocation(mShaderProgramHandle, it->name.c_str());
-				SPARK_ASSERT(location != GL_INVALID_INDEX, "Shader::initGpuResources error while initializing constant buffers");
-				graphicsDevice->setUniformBufferBinding(mShaderProgramHandle, location, bindingPoint);
+				//No need to interrupt exection
+				//SPARK_ASSERT(location != GL_INVALID_INDEX, "Shader::initGpuResources error while initializing constant buffers. ");
+				if (location != GL_INVALID_INDEX) {
+					graphicsDevice->setUniformBufferBinding(mShaderProgramHandle, location, bindingPoint);
 
-				it->handle = graphicsDevice->createUniformBuffer();
-				graphicsDevice->bindUniformBuffer(it->handle);
-				graphicsDevice->fillUniformBuffer(it->size, 0, GL_DYNAMIC_DRAW);
-				graphicsDevice->bindUniformBufferBase(bindingPoint, it->handle);
-				graphicsDevice->unbindUnifromBuffer();
+					it->handle = graphicsDevice->createUniformBuffer();
+					graphicsDevice->bindUniformBuffer(it->handle);
+					graphicsDevice->fillUniformBuffer(it->size, 0, GL_DYNAMIC_DRAW);
+					graphicsDevice->bindUniformBufferBase(bindingPoint, it->handle);
+					graphicsDevice->unbindUnifromBuffer();
+				}
+				
 
 				// this is not the right way, work on a correct implementation
 				bindingPoint++;

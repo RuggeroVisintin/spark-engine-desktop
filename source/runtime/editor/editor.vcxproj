@@ -26,7 +26,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -71,6 +71,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\lib\sparkengine_desktop</OutDir>
+    <TargetName>$(ProjectName)d</TargetName>
+    <IncludePath>C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\core;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\platform;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\renderer;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\resource;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\engine;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\ui;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\3rd_party\glew;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -92,6 +95,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\bin\sparkengine_desktop;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\3rd_party\glew;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\3rd_party\opencv;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib;cored.lib;engined.lib;platformd.lib;rendererd.lib;resourced.lib;uid.lib;opencv_calib3d2413d.lib;opencv_contrib2413d.lib;opencv_core2413d.lib;opencv_features2d2413d.lib;opencv_flann2413d.lib;opencv_gpu2413d.lib;opencv_highgui2413d.lib;opencv_imgproc2413d.lib;opencv_legacy2413d.lib;opencv_ml2413d.lib;opencv_nonfree2413d.lib;opencv_objdetect2413d.lib;opencv_ocl2413d.lib;opencv_photo2413d.lib;opencv_stitching2413d.lib;opencv_superres2413d.lib;opencv_ts2413d.lib;opencv_video2413d.lib;opencv_videostab2413d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Loaders\Image\BmpLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

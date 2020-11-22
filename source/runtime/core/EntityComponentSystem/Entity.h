@@ -85,7 +85,7 @@ namespace SE
 			{
 				SPARK_ASSERT((std::is_base_of<Component, T>::value), "Entity::addComponent template argument is not derived from Component class");
 
-				for (ComponentMap::iterator it = mComponents.begin(); it != mComponents.end(); it++) {
+				for (ComponentMap::const_iterator it = mComponents.begin(); it != mComponents.end(); it++) {
 
 					// TODO: dynamic_cast is qutie slow, think to some kind of RTTI to keep only for component for now
 					if (T* _component = dynamic_cast<T*>(*it)) {

@@ -22,32 +22,32 @@
     <ProjectGuid>{8F2709B4-8039-4D11-AE22-7D9B1D258DB4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SparkEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -74,10 +74,13 @@
     <OutDir>$(SolutionDir)..\..\bin\sparkengine_desktop</OutDir>
     <TargetName>$(ProjectName)d</TargetName>
     <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
-    <IncludePath>C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\core;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\platform;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\resource;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\engine;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\renderer;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\runtime\ui;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\source\3rd_party\glew;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)core;$(SolutionDir)platform;$(SolutionDir)resource;$(SolutionDir)engine;$(SolutionDir)renderer;$(SolutionDir)ui;$(SolutionDir)..\3rd_party\glew;$(SolutionDir)..\3rd_party\opencv\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)core;$(SolutionDir)platform;$(SolutionDir)resource;$(SolutionDir)engine;$(SolutionDir)renderer;$(SolutionDir)ui;$(SolutionDir)..\3rd_party\glew;$(SolutionDir)..\3rd_party\opencv\include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\bin\sparkengine_desktop</OutDir>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -96,8 +99,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\lib\glew;C:\Users\rugge\Documents\Visual Studio 2015\Projects\sparkengine_desktop\lib\sparkengine_desktop;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;opengl32.lib;cored.lib;engined.lib;platformd.lib;rendererd.lib;resourced.lib;uid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\glew;$(SolutionDir)..\..\lib\sparkengine_desktop;$(SolutionDir)..\..\lib\opencv\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib;cored.lib;engined.lib;platformd.lib;rendererd.lib;resourced.lib;uid.lib;opencv_calib3d2413d.lib;opencv_contrib2413d.lib;opencv_core2413d.lib;opencv_features2d2413d.lib;opencv_flann2413d.lib;opencv_gpu2413d.lib;opencv_highgui2413d.lib;opencv_imgproc2413d.lib;opencv_legacy2413d.lib;opencv_ml2413d.lib;opencv_nonfree2413d.lib;opencv_objdetect2413d.lib;opencv_ocl2413d.lib;opencv_photo2413d.lib;opencv_stitching2413d.lib;opencv_superres2413d.lib;opencv_ts2413d.lib;opencv_video2413d.lib;opencv_videostab2413d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,6 +114,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\glew;$(SolutionDir)..\..\lib\sparkengine_desktop;$(SolutionDir)..\..\lib\opencv\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib;cored.lib;engined.lib;platformd.lib;rendererd.lib;resourced.lib;uid.lib;opencv_calib3d2413d.lib;opencv_contrib2413d.lib;opencv_core2413d.lib;opencv_features2d2413d.lib;opencv_flann2413d.lib;opencv_gpu2413d.lib;opencv_highgui2413d.lib;opencv_imgproc2413d.lib;opencv_legacy2413d.lib;opencv_ml2413d.lib;opencv_nonfree2413d.lib;opencv_objdetect2413d.lib;opencv_ocl2413d.lib;opencv_photo2413d.lib;opencv_stitching2413d.lib;opencv_superres2413d.lib;opencv_ts2413d.lib;opencv_video2413d.lib;opencv_videostab2413d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -36,6 +36,11 @@ namespace SE
 			SE::core::math::Mat4<float>		modelViewMatrix;
 			SE::core::math::Mat4<float>		viewMatrix;
 		};
+
+		struct EngineShaderBlockProxy
+		{
+			float deltaTime;
+		};
 	}
 }
 

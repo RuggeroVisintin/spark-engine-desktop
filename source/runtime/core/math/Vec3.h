@@ -106,7 +106,7 @@ namespace SE
 			const Vec3<T> Vec3<T>::FORWARD_VECTOR	= Vec3<T>(0, 0, 1);
 
 			template <class T>
-			const Vec3<T> Vec3<T>::UP_VECTOR		= Vec3<T>(0, 1, 0);
+			const Vec3<T> Vec3<T>::UP_VECTOR		= Vec3<T>(0, -1, 0);
 
 			template <class T>
 			const Vec3<T> Vec3<T>::RIGHT_VECTOR		= Vec3<T>(1, 0, 0);

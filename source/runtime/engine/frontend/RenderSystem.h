@@ -34,6 +34,7 @@ namespace SE
 			RenderSystem(Renderer* renderer, MeshManager* meshManager)
 				: mRenderer(renderer)
 				, mMeshManager(meshManager)
+				, mTotalDeltaTime(0)
 			{
 				SPARK_ASSERT(mRenderer != nullptr, "RenderSystem::constructor - @param renderer - is null");
 				SPARK_ASSERT(mMeshManager != nullptr, "RenderSystem::constructor - @param meshManager - is null");
@@ -51,7 +52,7 @@ namespace SE
 			void									registerComponent(LightComponent* component);
 
 			void									unregisterComponent(unsigned int uuid);
-			void									update() const;
+			void									update(const float& deltaTime);
 
 		private:
 			Renderer*								mRenderer;
@@ -60,6 +61,8 @@ namespace SE
 			std::vector<StaticMeshComponent*>		mStaticMeshes;
 			std::vector<CameraComponent*>			mCameras;	
 			std::vector<LightComponent*>			mLights;
+
+			float									mTotalDeltaTime;
 
 		public:
 			// not found has to be in resource manager

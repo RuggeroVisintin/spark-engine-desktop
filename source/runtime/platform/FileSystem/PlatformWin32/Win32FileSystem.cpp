@@ -1301,7 +1301,7 @@ namespace SE
 			HANDLE Win32OsFileSystem::openOsDir(const char* osPath, WIN32_FIND_DATAA* data)
 			{
 				char dest[1024];
-				sprintf(dest, "%s/*.*", osPath);
+				sprintf_s(dest, "%s/*.*", osPath);
 				HANDLE res = FindFirstFileA(dest, data);
 
 				return res;

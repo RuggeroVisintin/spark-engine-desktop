@@ -19,8 +19,8 @@ namespace SE
 				: doRendering(true)
 				, color(1.0, 1.0, 1.0)
 				, ambientColor(0.0, 0.0, 0.0)
-				, power(10.0)
-				, ambientPower(0.3f)
+				, power(1)
+				, ambientPower(0)
 			{
 			}
 			

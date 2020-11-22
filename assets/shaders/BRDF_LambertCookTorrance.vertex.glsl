@@ -23,6 +23,8 @@ out V2f
 	vec2 texCoord;	
 } v2f;
 
+uniform float deltaTime;
+
 void main() 
 {
 	v2f.normal = aNormals;

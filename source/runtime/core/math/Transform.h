@@ -17,11 +17,21 @@ namespace SE
             	Transform()
 					: scale3D(1, 1, 1)
             	{				
-            	}            
+            	}       
+
+				Transform(T x, T y, T z)
+					: scale3D(1, 1, 1)
+				{
+					this->position.setX(x);
+					this->position.setY(y);
+					this->position.setZ(z);
+				}
 
             	~Transform()
             	{
             	}
+
+				
             
             public:
 				bool					operator==(const Transform<T>& t) const;
@@ -178,7 +188,7 @@ namespace SE
 				Mat4<T> r = rotation.toMat4();
 				Mat4<T> s = Mat4<T>::makeScale(scale3D);
 
-				return Mat4<T>((t * r) * s);
+				return Mat4<T>((r * t) * s);
 			}
         }
     }

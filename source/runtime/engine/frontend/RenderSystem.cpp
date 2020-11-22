@@ -1,6 +1,7 @@
 #include "RenderSystem.h"
 
 #include "../Transform/TransformComponent.h"
+#include "../Frontend/MaterialComponent.h"
 #include "../../Core/EntityComponentSystem/Entity.h"
 
 #include "../../Renderer/ShaderBlocks.h"
@@ -54,8 +55,10 @@ namespace SE
 			}
 		}
 
-		void RenderSystem::update() const
+		void RenderSystem::update(const float& deltaTime)
 		{
+			mTotalDeltaTime += deltaTime;
+
 			for (std::vector<CameraComponent*>::const_iterator camera = mCameras.begin();
 				camera != mCameras.end(); camera++)
 			{
@@ -80,40 +83,60 @@ namespace SE
 				command::UseShaderProgram* useShaderCommand = mRenderer->pushRenderCommand<command::UseShaderProgram>();
 				useShaderCommand->shaderProgram = forwardLightingShader.getShaderProgramHandle();
 
-				for (std::vector<StaticMeshComponent*>::const_iterator mesh = mStaticMeshes.begin();
-					mesh != mStaticMeshes.end(); mesh++)
+				for (std::vector<LightComponent*>::const_iterator light = mLights.begin();
+					light != mLights.end(); light++)
 				{
-					if ((*mesh)->doRendering) {
-						// view and material need to change only once per mesh
-						SE::core::ecs::Entity* entity = (*mesh)->getContainer();
+					for (std::vector<StaticMeshComponent*>::const_iterator mesh = mStaticMeshes.begin();
+						mesh != mStaticMeshes.end(); mesh++)
+					{
+						if ((*mesh)->doRendering) {
+							// view and material need to change only once per mesh
+							SE::core::ecs::Entity* entity = (*mesh)->getContainer();
 
-						// view setup
-						SE::renderer::ViewShaderBlockProxy* viewProxy = new SE::renderer::ViewShaderBlockProxy();
-						viewProxy->mvpMatrix = projection *  view * entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix();
-						viewProxy->normalMatrix = (entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix() * view).getInverse().getTransposed();
-						viewProxy->modelViewMatrix = view * entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix();
-						viewProxy->viewMatrix = view;
+							// view setup
+							SE::renderer::ViewShaderBlockProxy* viewProxy = new SE::renderer::ViewShaderBlockProxy();
+							viewProxy->mvpMatrix = projection * (view * entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix());
+							viewProxy->normalMatrix = (entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix() * view).getInverse().getTransposed();
+							viewProxy->modelViewMatrix = view * entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix();
+							viewProxy->viewMatrix = view;
 
-						command::CopyConstantBuffer* viewConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
-						viewConstBuffer->bufferSize = sizeof(SE::renderer::ViewShaderBlockProxy);
-						viewConstBuffer->bufferData = viewProxy;
-						viewConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("VIEW").handle;
+							SE::renderer::EngineShaderBlockProxy* engineProxy = new SE::renderer::EngineShaderBlockProxy();
+							engineProxy->deltaTime = mTotalDeltaTime;
 
-						// material setup
-						SE::renderer::MaterialShaderBlockProxy* materialProxy = new SE::renderer::MaterialShaderBlockProxy();
-						materialProxy->albedoColor = defaultMaterial.params.diffuseColor;
-						materialProxy->roughness = defaultMaterial.params.roughness;
-						materialProxy->reflectance = defaultMaterial.params.specularity;
-						materialProxy->metalness = defaultMaterial.params.metalness;
+							command::CopyConstantBuffer* viewConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
+							viewConstBuffer->bufferSize = sizeof(SE::renderer::ViewShaderBlockProxy);
+							viewConstBuffer->bufferData = viewProxy;
+							viewConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("VIEW").handle;
 
-						command::CopyConstantBuffer* materialConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
-						materialConstBuffer->bufferSize = sizeof(SE::renderer::MaterialShaderBlockProxy);
-						materialConstBuffer->bufferData = materialProxy;
-						materialConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("MATERIAL").handle;
+							command::CopyConstantBuffer* engineConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
+							engineConstBuffer->bufferSize = sizeof(SE::renderer::EngineShaderBlockProxy);
+							engineConstBuffer->bufferData = engineProxy;
+							engineConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("ENGINE").handle;
 
-						for (std::vector<LightComponent*>::const_iterator light = mLights.begin();
-							light != mLights.end(); light++)
-						{
+							// material setup
+							SE::renderer::MaterialShaderBlockProxy* materialProxy = new SE::renderer::MaterialShaderBlockProxy();
+
+							if (entity->hasComponent<SE::engine::MaterialComponent>() && entity->getComponent<SE::engine::MaterialComponent>()->doRendering) {
+								SE::engine::MaterialComponent* currentMaterial = entity->getComponent<SE::engine::MaterialComponent>();
+
+								materialProxy->albedoColor = currentMaterial->mMaterial.params.diffuseColor;
+								materialProxy->roughness = currentMaterial->mMaterial.params.roughness;
+								materialProxy->reflectance = currentMaterial->mMaterial.params.specularity;
+								materialProxy->metalness = currentMaterial->mMaterial.params.metalness;
+							}
+							else {
+								materialProxy->albedoColor = defaultMaterial.params.diffuseColor;
+								materialProxy->roughness = defaultMaterial.params.roughness;
+								materialProxy->reflectance = defaultMaterial.params.specularity;
+								materialProxy->metalness = defaultMaterial.params.metalness;
+							}
+
+							command::CopyConstantBuffer* materialConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
+							materialConstBuffer->bufferSize = sizeof(SE::renderer::MaterialShaderBlockProxy);
+							materialConstBuffer->bufferData = materialProxy;
+							materialConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("MATERIAL").handle;
+
+
 							if ((*light)->doRendering) {
 								// enable additive blending after the first pass
 								if (light != mLights.begin()) {
@@ -126,7 +149,7 @@ namespace SE
 								SE::renderer::LightShaderBlockProxy* lightProxy = new SE::renderer::LightShaderBlockProxy();
 								lightProxy->position = (*light)->getContainer()->getComponent<TransformComponent>()->transform.position;
 								lightProxy->color = (*light)->color;
-								lightProxy->direction = SE::core::math::Vec3<float>(1.0, 0.0, 0.0);
+								lightProxy->direction = lightProxy->position * -1;
 								lightProxy->power = (*light)->power;
 								lightProxy->ambientPower = (*light)->ambientPower;
 
