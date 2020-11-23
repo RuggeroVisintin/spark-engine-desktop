@@ -16,6 +16,7 @@
 #include <math/Quat.h>
 #include <math/Transform.h>
 #include <GameObjects/GameObjects.h>
+#include <GameObjects/CameraEntity.h>
 #include <EntityComponentSystem/Entity.h>
 
 #include <frontend\CameraComponent.h>
@@ -46,7 +47,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 		config.rootPath = pCmdLine;
 	} else {
 		// used while debugging on my pc, change to debug on other pcs
-		config.rootPath = "D:/Documenti/SparkEngine_Desktop - Copia/assets";
+		config.rootPath = "D:/Documenti/SparkEngine_Desktop/assets";
 	}
 
 	config.meshesFolder = "meshes";
@@ -153,23 +154,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 
 	}
 
-
-	// camera components creation
-	SE::engine::CameraComponent camera;
-	SE::engine::TransformComponent cameraTransform;
-
 	// camera object creation
-	SE::core::ecs::Entity cameraObject;// = SE::engine::createCameraEntity(&cameraTransform, &camera);
-	cameraObject.addComponent<SE::engine::CameraComponent>(&camera);
-	cameraObject.addComponent<SE::engine::TransformComponent>(&cameraTransform);
-
-	// background color settings
-	camera.backgroundColor.setX(0.0);
-	camera.backgroundColor.setY(0.0);
-	camera.backgroundColor.setZ(0.0);
-
-	cameraTransform.transform.position = SE::core::math::Vec3<float>(0.0, 0.0, 0.0);
-	camera.frustum = SE::core::math::Frustum<float>::createPerspective(SE::core::math::toRadians<float>(60.0f), 1360.0f / 768.0f, 0.1f, 1000.0f);
+	SE::engine::CameraEntity cameraObject;
 
 	// light components creation
 	SE::engine::LightComponent light;
@@ -206,7 +192,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	lightTransform3.transform.position.setZ(0);
 
 	// component registration
-	sparkEngine.renderSystem.registerComponent(&camera);
+	sparkEngine.renderSystem.registerComponent(&cameraObject.camera);
 	//sparkEngine.renderSystem.registerComponent(&staticMesh);
 	sparkEngine.renderSystem.registerComponent(&light);
 	sparkEngine.renderSystem.registerComponent(&light2);
