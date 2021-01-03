@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntityComponentSystem\Component.cpp" />
+    <ClCompile Include="math\MathUtils.cpp" />
     <ClCompile Include="Parsers\bitmap\BmpParser.cpp" />
     <ClCompile Include="Parsers\obj\ObjMesh.cpp" />
     <ClCompile Include="Parsers\obj\ObjParser.cpp" />

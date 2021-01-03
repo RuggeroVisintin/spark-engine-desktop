@@ -52,6 +52,10 @@ namespace SE
 			void									registerComponent(LightComponent* component);
 
 			void									unregisterComponent(unsigned int uuid);
+			/**
+			* @TODO: use per material shader instead of forwardLightingShader
+			* because forward lighting is a technique of blending and not a shader or material per se
+			*/
 			void									update(const float& deltaTime);
 
 		private:

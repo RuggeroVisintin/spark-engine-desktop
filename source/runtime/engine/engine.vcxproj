@@ -139,6 +139,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="controls\ControlComponent.h" />
+    <ClInclude Include="controls\ControlSystem.h" />
     <ClInclude Include="frontend\CameraComponent.h" />
     <ClInclude Include="frontend\IRenderPath.h" />
     <ClInclude Include="frontend\LightComponent.h" />
@@ -147,14 +149,14 @@
     <ClInclude Include="frontend\RenderSystem.h" />
     <ClInclude Include="frontend\StaticMeshComponent.h" />
     <ClInclude Include="GameObjects\CameraEntity.h" />
-    <ClInclude Include="GameObjects\GameObjects.h" />
+    <ClInclude Include="GameObjects\LightEntity.h" />
     <ClInclude Include="SparkEngine.h" />
     <ClInclude Include="Transform\TransformComponent.h" />
     <ClInclude Include="Transform\TransformSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="controls\ControlSystem.cpp" />
     <ClCompile Include="frontend\RenderSystem.cpp" />
-    <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="SparkEngine.cpp" />
     <ClCompile Include="Transform\TransformComponent.cpp" />
     <ClCompile Include="Transform\TransformSystem.cpp" />

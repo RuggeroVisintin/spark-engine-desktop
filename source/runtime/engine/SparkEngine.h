@@ -6,6 +6,7 @@
 #include "../Platform/FileSystem/FileSystem.h"
 
 #include "frontend\RenderSystem.h"
+#include "controls/ControlSystem.h"
 
 #include "../Resource/ResourceManager.h"
 #include "../Resource/Mesh/MeshResource.h"
@@ -47,6 +48,8 @@ namespace SE
 			typedef SE::platform::filesystem::OsFileSystem		FileSystem;
 			typedef SE::platform::backend::GLDevice				GLDevice;
 
+			typedef SE::platform::input::Dispatcher				InputDisptacher;
+
 		public:
 			SparkEngine(GLDevice* gfx, EnginePathsConfig enginePaths);
 
@@ -65,6 +68,9 @@ namespace SE
 
 			RenderSystem		renderSystem;
 			Renderer			renderer;
+
+			ControlSystem		controlSystem;
+			InputDisptacher		inputDisptacher;
 
 			MeshManager			meshManager;
 			MeshLoader			meshLaoder;

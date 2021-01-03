@@ -15,8 +15,8 @@ namespace SE
 			, shaderLoader(&fileSystem, mEnginePaths.shadersKey)
 			, shaderManager(&shaderLoader, gfx)
 			, renderSystem(&renderer, &meshManager)
+			, controlSystem(&inputDisptacher)
 		{
-			// TODO: Asserts and initialization
 			SPARK_ASSERT(gfx != nullptr, "SparkEngine::SparkEngine passed @param gfx is null");
 
 			SE::platform::filesystem::SearchPath_s meshSearchPath;
@@ -41,6 +41,7 @@ namespace SE
 
 		void SparkEngine::update(SE::platform::backend::GLContext& context, const float& deltaTime)
 		{
+			controlSystem.update();
 			renderSystem.update(deltaTime);
 			renderer.endFrame(context);
 		}

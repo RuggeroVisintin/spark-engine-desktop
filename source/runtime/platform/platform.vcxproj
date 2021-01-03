@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assertion\Assert.cpp" />
+    <ClCompile Include="Input\PlatformWin32\Win32Dispatcher.cpp" />
     <ClCompile Include="FileSystem\FileSystem.cpp" />
     <ClCompile Include="FileSystem\PlatformWin32\Win32File.cpp" />
     <ClCompile Include="FileSystem\PlatformWin32\Win32FileSystem.cpp" />
@@ -163,6 +164,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assertion\Assert.h" />
+    <ClInclude Include="Input\ControlsEvents.h" />
+    <ClInclude Include="Input\PlatformWin32\Win32ControlsEvents.h" />
+    <ClInclude Include="Input\Dispatcher.h" />
+    <ClInclude Include="Input\PlatformWin32\Win32Dispatcher.h" />
     <ClInclude Include="FileSystem\Directory.h" />
     <ClInclude Include="FileSystem\File.h" />
     <ClInclude Include="FileSystem\FileSystem.h" />

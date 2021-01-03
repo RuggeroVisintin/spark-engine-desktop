@@ -15,11 +15,9 @@
 
 #include <math/Quat.h>
 #include <math/Transform.h>
-#include <GameObjects/GameObjects.h>
-#include <GameObjects/CameraEntity.h>
+#include <GameObjects/LightEntity.h>
 #include <EntityComponentSystem/Entity.h>
 
-#include <frontend\CameraComponent.h>
 #include <frontend\LightComponent.h>
 #include <frontend\StaticMeshComponent.h>
 #include <frontend\MaterialComponent.h>
@@ -34,6 +32,8 @@
 #include <ShaderBlocks.h>
 
 #include <SparkEngine.h>
+
+#include "GameObjects/DebugCameraEntity.h"
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCmdShow)
 {
@@ -130,7 +130,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 			rowCount++;
 		}
 
-	
 		SE::resource::Material tempMaterial;
 		tempMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
 		tempMaterial.params.metalness = 0.5;
@@ -138,8 +137,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 		tempMaterial.params.specularity = 0.5;
 
 		SE::engine::MaterialComponent* materialComponent = new SE::engine::MaterialComponent(tempMaterial);
-
-
 
 		// game object creation
 		SE::core::ecs::Entity* gameObject = new SE::core::ecs::Entity();
@@ -149,60 +146,25 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 		transform->transform.position = SE::core::math::Vec3<float>((i % 7) * 0.35f, ((i) / 7) * -0.35f, -10.0f);
 		transform->transform.scale3D = SE::core::math::Vec3<float>(0.12f, 0.12f, 0.12f);
 
-
 		sparkEngine.renderSystem.registerComponent(staticMesh);
-
 	}
 
 	// camera object creation
-	SE::engine::CameraEntity cameraObject;
+	SE::engine::DebugCameraEntity cameraObject;
 
 	// light components creation
-	SE::engine::LightComponent light;
-	SE::engine::TransformComponent lightTransform = SE::engine::TransformComponent(SE::core::math::Transform<float>(0, 0, 1));
-
-	// light object creation
-	SE::core::ecs::Entity lightObject;
-	lightObject.addComponent<SE::engine::LightComponent>(&light);
-	lightObject.addComponent<SE::engine::TransformComponent>(&lightTransform);
-
-	// light components creation
-	SE::engine::LightComponent light2;
-	SE::engine::TransformComponent lightTransform2 = SE::engine::TransformComponent(SE::core::math::Transform<float>(1, SE::core::math::toRadians(90.0f), 0));;
-
-	// light object creation
-	SE::core::ecs::Entity lightObject2;
-	lightObject2.addComponent<SE::engine::LightComponent>(&light2);
-	lightObject2.addComponent<SE::engine::TransformComponent>(&lightTransform2);
-
-	// light components creation
-	SE::engine::LightComponent light3;
-	SE::engine::TransformComponent lightTransform3;
-
-	// light object creation
-	SE::core::ecs::Entity lightObject3;
-	lightObject3.addComponent<SE::engine::LightComponent>(&light3);
-	lightObject3.addComponent<SE::engine::TransformComponent>(&lightTransform3);
-
-	light3.color = SE::core::math::Vec3<float>(1.0f, 1.0f, 1.0f);
-	light3.ambientPower = 0.00f;
-	light3.power = 1.0f;
-	lightTransform3.transform.position.setX(0);
-	lightTransform3.transform.position.setY(-1);
-	lightTransform3.transform.position.setZ(0);
+	SE::engine::LightEntity lightObject;
+	lightObject.transform.transform.position = SE::core::math::Vec3<float>(0, 0, 1);
 
 	// component registration
+	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);
 	sparkEngine.renderSystem.registerComponent(&cameraObject.camera);
 	//sparkEngine.renderSystem.registerComponent(&staticMesh);
-	sparkEngine.renderSystem.registerComponent(&light);
-	sparkEngine.renderSystem.registerComponent(&light2);
-	//sparkEngine.renderSystem.registerComponent(&light3);
+	sparkEngine.renderSystem.registerComponent(&lightObject.light);
 	//sparkEngine.renderSystem.defaultMaterial.shaderProgram = shader;
 	sparkEngine.renderSystem.forwardLightingShader = shader;
 
-	//sparkEngine.renderSystem.defaultMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1.0f, 0.878f, 0.741f);
 	sparkEngine.renderSystem.defaultMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
-	//sparkEngine.renderSystem.defaultMaterial.params.diffuseColor = SE::core::math::Vec3<float>(0.94f, 0.72f, 0.63f);
 	sparkEngine.renderSystem.defaultMaterial.params.metalness = 0.0f;
 	sparkEngine.renderSystem.defaultMaterial.params.roughness = 0.5f;
 	sparkEngine.renderSystem.defaultMaterial.params.specularity = 0.5f;
@@ -216,7 +178,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	bool running = true;
 
 	while (running) {
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+		/*if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			if (msg.message == WM_QUIT)
 				running = false;
 			else if (msg.message == WM_KEYUP) {
@@ -292,14 +254,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
-		} else {
+		} else {*/
 			if (rotate) {
 				//transform.transform.rotate(SE::core::math::Quat<float>(0.0f, SE::core::math::toRadians(0.01f) * delta, 0.0f, 1.0f));
 			}
 
 			delta = timer.getElapsedMs();
 			sparkEngine.update(*window.getGraphicsContext(), delta);
-		}
+		//}
 	}
 
 	return msg.wParam;

@@ -19,14 +19,6 @@ namespace SE
             	{				
             	}       
 
-				Transform(T x, T y, T z)
-					: scale3D(1, 1, 1)
-				{
-					this->position.setX(x);
-					this->position.setY(y);
-					this->position.setZ(z);
-				}
-
             	~Transform()
             	{
             	}

@@ -79,7 +79,6 @@ namespace SE
 				clearBuffersCommand->clearColor[2] = (*camera)->backgroundColor.getZ();
 				clearBuffersCommand->clearColor[3] = 1.0f;
 
-				// use forward lighting shader
 				command::UseShaderProgram* useShaderCommand = mRenderer->pushRenderCommand<command::UseShaderProgram>();
 				useShaderCommand->shaderProgram = forwardLightingShader.getShaderProgramHandle();
 

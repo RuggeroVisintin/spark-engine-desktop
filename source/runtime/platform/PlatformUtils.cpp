@@ -2,7 +2,7 @@
 
 namespace SE
 {
-	namespace Platform
+	namespace platform
 	{
 		void notImplementedError(const char* function, const char* file, unsigned int line)
 		{

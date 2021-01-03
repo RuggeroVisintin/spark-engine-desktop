@@ -21,10 +21,6 @@ namespace SE
 				static const T PI4;
 			};
 
-			const float Constants<float>::PI	= 3.14159265358979f;
-			const float Constants<float>::PI2	= 1.57079632679489f;
-			const float Constants<float>::PI4	= 0.78539816339745f;			
-
 			template <> class Constants<double>
 			{
 			public:
@@ -35,8 +31,6 @@ namespace SE
 				/*static const T PI2 = 1.57079632679489;
 				static const T PI4 = 0.78539816339745;*/
 			};
-
-			const double Constants<double>::PI = 3.141592653589793238463;
 
 			template <class T>
 			T toDegrees(T radians)
