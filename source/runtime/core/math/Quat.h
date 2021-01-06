@@ -154,8 +154,10 @@ namespace SE
 
 				w = cos(thetaOverTwo);
 				x = sin(thetaOverTwo);
-				y = 0;
-				z = 0;
+				y = y;
+				z = z;
+
+				normalize();
 			}
 
 			template <class T>
@@ -164,9 +166,9 @@ namespace SE
 				T thetaOverTwo = theta * 0.5f;
 
 				w = cos(thetaOverTwo);
-				x = 0;
+				x = x;
 				y = sin(thetaOverTwo);
-				z = 0;				
+				z = z;				
 
 				normalize();
 			}
@@ -177,8 +179,8 @@ namespace SE
 				T thetaOverTwo = theta * 0.5f;
 
 				w = cos(thetaOverTwo);
-				x = 0;
-				y = 0;
+				x = x;
+				y = y;
 				z = sin(thetaOverTwo);
 
 				normalize();

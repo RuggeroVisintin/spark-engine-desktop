@@ -108,7 +108,7 @@ void main()
 {
 	vec3 N = normalize(v2f.eyeNormal);
 	vec3 V = normalize(-v2f.eyePosition);
-	vec3 L = normalize(uLight.position * inverse(mat3(v2f.viewMatrix)));
+	vec3 L = normalize(uLight.direction * inverse(mat3(v2f.viewMatrix)));
 
 	float roughness = clamp(uMaterial.roughness, 0.02f, 1.0f);
 	float F0 = 0.16f * pow(uMaterial.reflectance, 2.0f);
@@ -120,9 +120,9 @@ void main()
 	float specular = 0.0f;
 	float ambient = uLight.ambientPower;
 
-	if(diffuse > 0) {
+	//if(diffuse > 0) {
 		specular = GGX_Brdf(N, V, L, roughness, F0);
-	}
+	//}
 
 	float finalSpecular = saturate(specular);
 	vec3 specularColor = mix(uLight.color, uMaterial.kd, uMaterial.metalness);

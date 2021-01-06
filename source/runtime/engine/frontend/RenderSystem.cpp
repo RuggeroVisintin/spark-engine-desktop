@@ -148,7 +148,7 @@ namespace SE
 								SE::renderer::LightShaderBlockProxy* lightProxy = new SE::renderer::LightShaderBlockProxy();
 								lightProxy->position = (*light)->getContainer()->getComponent<TransformComponent>()->transform.position;
 								lightProxy->color = (*light)->color;
-								lightProxy->direction = lightProxy->position * -1;
+								lightProxy->direction = (*light)->getContainer()->getComponent<TransformComponent>()->transform.rotation.rotateVector(SE::core::math::Vec3<float>::FORWARD_VECTOR);
 								lightProxy->power = (*light)->power;
 								lightProxy->ambientPower = (*light)->ambientPower;
 

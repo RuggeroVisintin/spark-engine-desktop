@@ -32,7 +32,7 @@ out V2f
 	vec2 texCoord;	
 
 	mat4 modelViewProjection;
-	mat4 normalMatrix;
+	mat4 normalMatrix; // not needed
 	mat4 modelViewMatrix;
 	mat4 viewMatrix;
 } v2f;
@@ -45,7 +45,7 @@ void main()
 	v2f.viewMatrix = uCamera.viewMatrix;
 
 	v2f.normal = aNormals;
-	v2f.eyeNormal = (uCamera.normalMatrix * vec4(aNormals, 0.0)).xyz;
+	v2f.eyeNormal = (uCamera.modelViewMatrix * vec4(aNormals, 0.0)).xyz;
 
 	v2f.position = aPositions;
 	v2f.eyePosition = (uCamera.modelViewMatrix * vec4(aPositions, 1.0)).xyz;

@@ -154,14 +154,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 
 	// light components creation
 	SE::engine::LightEntity lightObject;
-	lightObject.transform.transform.position = SE::core::math::Vec3<float>(0, 0, 1);
+	lightObject.transform.transform.position = SE::core::math::Vec3<float>(0, 1, 1);
+	lightObject.transform.transform.rotation.setRotationAboutX(SE::core::math::toRadians<float>(45));
+	lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(45));
 
 	// component registration
 	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);
 	sparkEngine.renderSystem.registerComponent(&cameraObject.camera);
-	//sparkEngine.renderSystem.registerComponent(&staticMesh);
 	sparkEngine.renderSystem.registerComponent(&lightObject.light);
-	//sparkEngine.renderSystem.defaultMaterial.shaderProgram = shader;
 	sparkEngine.renderSystem.forwardLightingShader = shader;
 
 	sparkEngine.renderSystem.defaultMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
