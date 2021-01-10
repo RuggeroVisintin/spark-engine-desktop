@@ -38,6 +38,7 @@ private:
 	void							enableAdditiveBlending(command::EnableAdditiveBlending command);
 	void							setFramebuffer(command::SetFrameBuffer command);
 	void							useTexture(command::UseTexture command);
+	void							setCulling(command::SetCulling command);
 
 private:
 	unsigned int					mInternalHRes;

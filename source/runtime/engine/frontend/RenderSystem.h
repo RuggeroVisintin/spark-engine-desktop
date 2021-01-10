@@ -37,7 +37,7 @@ namespace SE
 			RenderSystem(Renderer* renderer, MeshManager* meshManager)
 				: mRenderer(renderer)
 				, mMeshManager(meshManager)
-				, mShadowBuffer(renderer, 1024, 1024)
+				, mShadowBuffer(renderer, 2048, 2048)
 				, mTotalDeltaTime(0)
 			{
 				SPARK_ASSERT(mRenderer != nullptr, "RenderSystem::constructor - @param renderer - is null");
@@ -71,7 +71,7 @@ namespace SE
 			void									viewProxySetup(const Mat4F& projection, const Mat4F& view, const SE::core::ecs::Entity& entity) const;
 			void									engineProxySetup() const;
 			void									materialSetup(const SE::core::ecs::Entity& entity) const;
-			void									lightSetup(const LightComponent& light) const;
+			void									lightSetup(const LightComponent& light, const Mat4F& modelMatrix) const;
 
 		private:
 			Renderer*								mRenderer;

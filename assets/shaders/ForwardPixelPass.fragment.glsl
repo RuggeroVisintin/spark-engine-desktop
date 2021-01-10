@@ -109,11 +109,13 @@ vec3 toLinearSpace(vec3 v) {
 	return pow(v, vec3(2.2f));
 }
 
-float ShadowCalculation(vec4 fragPosLightSpace)
+float ShadowCalculation(vec4 fragPosLightSpace, float NdotL)
 {
     float visibility = 1.0;
-	if ( texture(shadowTexture, fragPosLightSpace.xy ).z < fragPosLightSpace.z){
-    	visibility = 0.5;
+	float bias = 0.00005 * tan(acos(NdotL)); // cosTheta is dot( n,l ), clamped between 0 and 1
+	//bias = clamp(bias, 0, 0.01);
+	if ( texture(shadowTexture, fragPosLightSpace.xy ).z < fragPosLightSpace.z - bias) {
+    	visibility = 0;
 	}
 
 	return visibility;
@@ -124,12 +126,14 @@ void main()
 	vec3 N = normalize(v2f.eyeNormal);
 	vec3 V = normalize(-v2f.eyePosition);
 	vec3 L = normalize(uLight.direction * inverse(mat3(v2f.viewMatrix)));
+	float NdotL = dot(N, L);
 
 	float roughness = clamp(uMaterial.roughness, 0.02f, 1.0f);
 	float F0 = 0.16f * pow(uMaterial.reflectance, 2.0f);
 	float F1 = 1 - F0;
 
-	float diffuse = LambertDiffuse(dot(N, L));
+	float shadow = ShadowCalculation(v2f.shadowCoord, NdotL); 
+	float diffuse = LambertDiffuse(NdotL) * shadow;
 	diffuse *= (1 / PI) * F1;
 
 	float specular = 0.0f;
@@ -139,12 +143,11 @@ void main()
 		specular = GGX_Brdf(N, V, L, roughness, F0);
 	}
 
-	float shadow = ShadowCalculation(v2f.shadowCoord); 
 
 	float finalSpecular = saturate(specular);
 	vec3 specularColor = mix(uLight.color, uMaterial.kd, uMaterial.metalness);
-	vec3 finalColor = shadow * (ambient + diffuse) * uMaterial.kd + finalSpecular * specularColor * uLight.color * uLight.power;
+	vec3 finalColor = (ambient + diffuse) * uMaterial.kd + finalSpecular * specularColor * uLight.color * uLight.power;
 
-    FS_fragColor = vec4(finalColor, 1.0f);
-	//FS_fragColor = vec4(vec3(texture(shadowTexture, v2f.shadowCoord.xy).r), 1.0);
+   	//FS_fragColor = vec4(finalColor, 1.0f);
+	FS_fragColor = vec4(finalColor, 1.0);
 }

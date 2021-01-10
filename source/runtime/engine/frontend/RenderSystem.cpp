@@ -72,6 +72,7 @@ namespace SE
 					light != mLights.end(); light++)
 				{	
 					this->shadowMappingPass(**light);
+
 					this->clearBuffers(**camera);
 					this->useShader(this->forwardLightingShader);
 
@@ -80,6 +81,10 @@ namespace SE
 					{
 						if ((*mesh)->doRendering) {
 							// view and material need to change only once per mesh
+							/*SE::core::math::Mat4<float> projection = (*light)->getShadowProjection().toMat4();
+							SE::core::math::Mat4<float> view = (*light)->getContainer()->getComponent<SE::engine::TransformComponent>()->getLocalToWorld();*/
+
+
 							SE::core::ecs::Entity* entity = (*mesh)->getContainer();
 
 							this->viewProxySetup(projection, view, *entity);
@@ -92,7 +97,7 @@ namespace SE
 									this->toggleAdditiveBlending(true);
 								}
 
-								this->lightSetup(**light);
+								this->lightSetup(**light, (*mesh)->getContainer()->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix());
 
 								command::UseTexture* useTexture = mRenderer->pushRenderCommand<command::UseTexture>();
 								useTexture->textureHandle = mShadowBuffer.getTextureHandle();
@@ -162,10 +167,10 @@ namespace SE
 				if ((*mesh)->doRendering) {
 					// view and material need to change only once per mesh
 					SE::core::ecs::Entity* entity = (*mesh)->getContainer();
-					SE::core::math::Frustum<float> projection = SE::core::math::Frustum<float>::createOrtho(-10.0f, 10.0f, -10.0f, 10.0f, 1.0f, 1000.0f);
+					SE::core::math::Mat4<float> projection = light.getShadowProjection().toMat4();
 					SE::core::math::Mat4<float> model = entity->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix();
 					SE::core::math::Mat4<float> view = light.getContainer()->getComponent<TransformComponent>()->getLocalToWorld();
-					SE::core::math::Mat4<float> shadowMatrix = projection.toMat4() * view * model;
+					SE::core::math::Mat4<float> shadowMatrix = projection * view * model;
 
 					SE::renderer::ShadowShaderBlockProxy* shadowProxy = new SE::renderer::ShadowShaderBlockProxy();
 					shadowProxy->shadowMatrix = shadowMatrix;
@@ -232,16 +237,16 @@ namespace SE
 			materialConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("MATERIAL").handle;
 		}
 
-		void RenderSystem::lightSetup(const LightComponent& light) const
+		void RenderSystem::lightSetup(const LightComponent& light, const Mat4F& modelMatrix) const
 		{
-			SE::core::math::Frustum<float> lightFurstum = SE::core::math::Frustum<float>::createOrtho(-1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1000.0f);
+			SE::core::math::Frustum<float> lightFurstum = light.getShadowProjection();
 			SE::core::math::Mat4<float> scaleBiasMatrix =
 				SE::core::math::Mat4<float>(
 					0.5f, 0.0f, 0.0f, 0.0f,
 					0.0F, 0.5f, 0.0f, 0.0f,
 					0.0f, 0.0f, 0.5f, 0.0f,
 					0.5f, 0.5f, 0.5f, 1.0f);
-			SE::core::math::Mat4<float> shadowMatrix = scaleBiasMatrix * lightFurstum.toMat4() * light.getContainer()->getComponent<TransformComponent>()->transform.getTransformMatrix();
+			SE::core::math::Mat4<float> shadowMatrix = scaleBiasMatrix * lightFurstum.toMat4() * light.getContainer()->getComponent<TransformComponent>()->transform.getTransformMatrix() * modelMatrix;
 
 			SE::renderer::LightShaderBlockProxy* lightProxy = new SE::renderer::LightShaderBlockProxy();
 			lightProxy->position = light.getContainer()->getComponent<TransformComponent>()->transform.position;

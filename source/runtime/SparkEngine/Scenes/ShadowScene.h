@@ -87,8 +87,8 @@ namespace SE
 				gameObject->addComponent<SE::engine::StaticMeshComponent>(staticMesh);
 				gameObject->addComponent<SE::engine::TransformComponent>(transform);
 				gameObject->addComponent<SE::engine::MaterialComponent>(materialComponent);
-				transform->transform.position = SE::core::math::Vec3<float>(0.0f, 0.0f, -10.0f);
-
+				transform->transform.position = SE::core::math::Vec3<float>(0.0f, 0.7, -10.0f);
+				transform->transform.scale3D = SE::core::math::Vec3<float>(2, 2, 2);
 
 				SE::platform::filesystem::OsFile* planeFile = mSparkEngine->fileSystem.openFileRead("plane.obj", config.meshesKey);
 				SE::core::parser::text::wavefront::ObjMesh planeObjMesh;
@@ -101,9 +101,9 @@ namespace SE
 				planeMesh.loadFromObj(planeObjMesh, "plane");
 				planeMesh.initGpuResources(mDevice);
 
-				/*SE::resource::ResourceHandle planeMeshHandle = mSparkEngine->meshManager.addResource(planeMesh, planeMesh.getName(), SE::resource::RMT_Dynamic);
+				SE::resource::ResourceHandle planeMeshHandle = mSparkEngine->meshManager.addResource(planeMesh, planeMesh.getName(), SE::resource::RMT_Dynamic);
 
-				SE::engine::StaticMeshComponent* planeStaticMesh = new SE::engine::StaticMeshComponent(meshHandle);
+				SE::engine::StaticMeshComponent* planeStaticMesh = new SE::engine::StaticMeshComponent(planeMeshHandle);
 				SE::engine::TransformComponent* planeTransform = new SE::engine::TransformComponent(SE::core::math::Transform<float>());
 
 				SE::resource::Material planeMaterial;
@@ -116,9 +116,8 @@ namespace SE
 				planeGameObject->addComponent<SE::engine::TransformComponent>(planeTransform);
 				planeGameObject->addComponent<SE::engine::MaterialComponent>(planeMaterialComponent);
 				planeTransform->transform.position = SE::core::math::Vec3<float>(0.0f, 0.0f, -10.0f);
-				planeTransform->transform.scale3D = SE::core::math::Vec3<float>(0.1f, 0.1f, .1f);*/
 
-				//mSparkEngine->renderSystem.registerComponent(planeStaticMesh);
+				mSparkEngine->renderSystem.registerComponent(planeStaticMesh);
 				mSparkEngine->renderSystem.registerComponent(staticMesh);
 
 			}

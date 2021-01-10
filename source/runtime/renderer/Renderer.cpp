@@ -76,8 +76,19 @@ void Renderer::drawIndexedPrimitive(command::DrawIndexed command)
 	if (mLastIndexBuffer != command.indexBuffer)
 	{
 		mGfx->bindIndexBuffer(command.indexBuffer);
+		mGfx->bindVertexBuffer(command.vertexBuffer);
 		mLastIndexBuffer = command.indexBuffer;
 	}
+
+	mGfx->enableVertexAttributeArray(0);
+	mGfx->defineVertexAttributePointer(0, 3, GL_FLOAT, false, sizeof(float) * 8, 0);
+
+	mGfx->enableVertexAttributeArray(1);
+	mGfx->defineVertexAttributePointer(1, 3, GL_FLOAT, false, sizeof(float) * 8, (const GLvoid*)(sizeof(float) * 3));
+
+	mGfx->enableVertexAttributeArray(2);
+	mGfx->defineVertexAttributePointer(2, 3, GL_FLOAT, false, sizeof(float) * 8, (const GLvoid*)(sizeof(float) * 6));
+
 
 	mGfx->drawIndexedPrimitive(GL_TRIANGLES, command.indicesCount, GL_UNSIGNED_INT, command.indicesOffset);
 }
@@ -179,4 +190,14 @@ void Renderer::useTexture(command::UseTexture command)
 	glBindTexture(GL_TEXTURE_2D, command.textureHandle);
 
 	mGfx->uniformInt(command.textureLocation, command.textureBinding);
+}
+
+void Renderer::setCulling(command::SetCulling command)
+{
+	if (command.status == true) {
+		glCullFace(GL_BACK);
+	}
+	else {
+		glCullFace(GL_FRONT);
+	}
 }

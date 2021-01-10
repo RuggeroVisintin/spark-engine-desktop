@@ -63,7 +63,6 @@ namespace SE
 
 			graphicsDevice->bindIndexBuffer(mIndexBuffer);
 			graphicsDevice->fillIndexBuffer(mIndices.size() * sizeof(mIndices[0]), mIndices.data(), GL_STATIC_DRAW);
-			graphicsDevice->unbindIndexBuffer();
 
 			if (mVertexBuffer.isNull()) {
 				mVertexBuffer = graphicsDevice->createVertexBuffer();
@@ -83,6 +82,8 @@ namespace SE
 
 			graphicsDevice->fillVertexBuffer(mVertices.size() * sizeof(mVertices[0]), mVertices.data(), GL_STATIC_DRAW);
 			graphicsDevice->unbindVertexBuffer();
+			graphicsDevice->unbindIndexBuffer();
+
 
 			if (keepDataCached == false)
 			{

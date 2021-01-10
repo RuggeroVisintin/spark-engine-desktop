@@ -16,7 +16,8 @@ enum RenderCommandID
 	RC_UseShaderProgram			= 5,
 	RC_EnableAdditiveBlending	= 6,
 	RC_SetFrameBuffer			= 7,
-	RC_UseTexture				= 8
+	RC_UseTexture				= 8,
+	RC_SetCulling				= 9,
 };
 
 enum BlendingType
@@ -107,6 +108,13 @@ namespace command
 		SE::platform::backend::GLShaderProgramHandle	shaderHandle;
 
 		static const RenderCommandID	ID = RenderCommandID::RC_UseTexture;
+	};
+
+	struct SetCulling
+	{
+		bool status;
+
+		static const RenderCommandID ID = RenderCommandID::RC_SetCulling;
 	};
 }
 

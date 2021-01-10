@@ -3,6 +3,7 @@
 
 #include "../../Core/EntityComponentSystem/Component.h"
 #include "../../Core/math/Vec3.h"
+#include <math/Frustum.h>
 
 namespace SE
 {
@@ -22,6 +23,10 @@ namespace SE
 				, power(1)
 				, ambientPower(0)
 			{
+			}
+
+			static SE::core::math::Frustum<float> getShadowProjection() {
+				return SE::core::math::Frustum<float>::createOrtho(-1, 1, -1, 1, 0.1f, 100.0f);
 			}
 			
 		public:

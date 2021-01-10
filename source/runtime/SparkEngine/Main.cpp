@@ -197,10 +197,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 
 	// light components creation
 	SE::engine::LightEntity lightObject;
-	lightObject.transform.transform.position = SE::core::math::Vec3<float>(-4, 0, 10);
+	lightObject.transform.transform.position = SE::core::math::Vec3<float>(0, -2, 8);
 	lightObject.transform.transform.rotation.setRotationAboutX(SE::core::math::toRadians<float>(-45));
-	lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(90));
-	lightObject.light.ambientPower = 0.001;
+	//lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(90));
+	lightObject.light.ambientPower = 0.01;
 
 	// component registration
 	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);

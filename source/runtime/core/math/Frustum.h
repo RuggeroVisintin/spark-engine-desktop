@@ -60,7 +60,7 @@ namespace SE
 
 				result.raw[0] = 2 / (right - left);						result.raw[1] = 0;										result.raw[2] = 0;														result.raw[3] = 0;
 				result.raw[4] = 0;										result.raw[5] = 2 / (top - bottom);						result.raw[6] = 0;														result.raw[7] = 0;
-				result.raw[8] = 0;										result.raw[9] = 0;										result.raw[10] = -(2 / (farPlane - nearPlane));							result.raw[11] = 0;
+				result.raw[8] = 0;										result.raw[9] = 0;										result.raw[10] = (2 / (nearPlane - farPlane));							result.raw[11] = 0;
 				result.raw[12] = -((right + left) / (right - left));	result.raw[13] = -((top + bottom) / (top - bottom));	result.raw[14] = -((farPlane + nearPlane) / (farPlane - nearPlane));	result.raw[15] = 1;
 			
 				return result;
