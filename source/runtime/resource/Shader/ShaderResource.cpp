@@ -52,9 +52,9 @@ namespace SE
 			graphicsDevice->destroyShader(fragmentShader);
 			
 			unsigned int location;
-			unsigned int bindingPoint = 0;
 
 			for (std::vector<ConstantDefinition>::iterator it = mConstantDefinitions.begin(); it != mConstantDefinitions.end(); it++) {
+				unsigned int bindingPoint = this->generateBindingPoint();
 				
 				location = graphicsDevice->getUniformBufferLocation(mShaderProgramHandle, it->name.c_str());
 				//No need to interrupt exection
@@ -68,10 +68,6 @@ namespace SE
 					graphicsDevice->bindUniformBufferBase(bindingPoint, it->handle);
 					graphicsDevice->unbindUnifromBuffer();
 				}
-				
-
-				// this is not the right way, work on a correct implementation
-				bindingPoint++;
 			}
 		}
 

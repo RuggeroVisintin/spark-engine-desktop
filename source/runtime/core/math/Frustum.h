@@ -26,9 +26,9 @@ namespace SE
     
     		public:
     			static Frustum<T>   createPerspective(const T& fov, const T& ratio, const T& near, const T& far);
-    			//static Frustum<T> createOrtho(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far);
+    			static Frustum<T>	createOrtho(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far);
     
-    			Frustum<T>&         makePerspective(const T& fov, const T& ratio, const T& near, const T& far);
+    			//Frustum<T>&       makePerspective(const T& fov, const T& ratio, const T& near, const T& far);
     			//Frustum<T>&       makeOrtho(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far);
     		
 				Mat4<T>				toMat4() const;
@@ -54,6 +54,20 @@ namespace SE
 			}
 
 			template <class T>
+			Frustum<T> Frustum<T>::createOrtho(const T& left, const T& right, const T& bottom, const T& top, const T& nearPlane, const T& farPlane)
+			{
+				Frustum<T> result;
+
+				result.raw[0] = 2 / (right - left);						result.raw[1] = 0;										result.raw[2] = 0;														result.raw[3] = 0;
+				result.raw[4] = 0;										result.raw[5] = 2 / (top - bottom);						result.raw[6] = 0;														result.raw[7] = 0;
+				result.raw[8] = 0;										result.raw[9] = 0;										result.raw[10] = -(2 / (farPlane - nearPlane));							result.raw[11] = 0;
+				result.raw[12] = -((right + left) / (right - left));	result.raw[13] = -((top + bottom) / (top - bottom));	result.raw[14] = -((farPlane + nearPlane) / (farPlane - nearPlane));	result.raw[15] = 1;
+			
+				return result;
+			}
+
+			// NOT NEEDED for now
+			/*template <class T>
 			Frustum<T>& Frustum<T>::makePerspective(const T& fov, const T& ratio, const T& nearPlane, const T& farPlane)
 			{
 				T halfFov = 1.0 / tan((fov / 2.0));
@@ -65,7 +79,7 @@ namespace SE
 				raw[12] = 0;                    raw[13] = 0;            raw[14] = (2 * farPlane * nearPlane) * nf;		raw[15] = 0;
 
 				return *this;
-			}
+			}*/
 
 			template <class T>
 			Mat4<T> Frustum<T>::toMat4() const

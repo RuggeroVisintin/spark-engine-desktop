@@ -78,6 +78,8 @@ namespace SE
 				GLuint						getUniformBufferLocation(GLShaderProgramHandle shaderProgram, const GLchar* name) const;
 				void						setUniformBufferBinding(GLShaderProgramHandle shaderProgram, GLuint bufferLocation, GLuint bindingPoint) const;
 
+				void						uniformInt(GLint location, GLint value) const;
+
 				void						uniformFloat(GLint location, GLfloat value) const;
 				void						uniformFloatV(GLint location, GLsizei count, const GLfloat* values) const;
 

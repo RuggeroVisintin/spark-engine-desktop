@@ -29,23 +29,25 @@
 #include <Texture/TextureResource.h>
 
 #include <Renderer.h>
-#include <ShaderBlocks.h>
+//#include <ShaderBlocks.h>
 
 #include <SparkEngine.h>
 
 #include "GameObjects/DebugCameraEntity.h"
+#include "Scenes/ShadowScene.h"
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCmdShow)
 {
 	// window creation
-	Win32WindowGL window = Win32WindowGL(SE::platform::backend::GLContext::GLV_32, L"SparkEngine - while in dev");
+	Win32WindowGL window = Win32WindowGL(SE::platform::backend::GLContext::GLV_45, L"SparkEngine - while in dev");
 	window.show();
 
 	// engine configuration
 	SE::engine::EnginePathsConfig config;
 	if (!std::string(pCmdLine).empty()) {
 		config.rootPath = pCmdLine;
-	} else {
+	}
+	else {
 		// used while debugging on my pc, change to debug on other pcs
 		config.rootPath = "D:/Documenti/SparkEngine_Desktop/assets";
 	}
@@ -100,8 +102,29 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	sparkEngine.fileSystem.closeFile(vertFile);
 	sparkEngine.fileSystem.closeFile(fragFile);
 
+	SE::sandbox::ShadowScene shadowScene = SE::sandbox::ShadowScene(&sparkEngine, device, config);
+
+	/*SE::platform::filesystem::OsFile* shadowVertFile = sparkEngine.fileSystem.openFileRead("Forward/Shadowing.vertex.glsl", config.shadersKey);
+	SE::platform::filesystem::OsFile* shadowFragFile = sparkEngine.fileSystem.openFileRead("Forward/Shadowing.fragment.glsl", config.shadersKey);
+
+	// shader resource loading
+	SE::resource::Shader shadowShader;
+	shadowShader.setFragmentSourceFromFile(shadowFragFile);
+	shadowShader.setVertexSourceFromFile(shadowVertFile);
+
+	// view constant definition setup
+	SE::resource::Shader::ConstantDefinition shadowConstData;
+	shadowConstData.name = "SHADOW";
+	shadowConstData.size = sizeof(SE::renderer::ShadowShaderBlockProxy);
+
+	shadowShader.addConstantData(shadowConstData);
+	shadowShader.initGpuResources(device);
+
+	sparkEngine.fileSystem.closeFile(shadowVertFile);
+	sparkEngine.fileSystem.closeFile(shadowFragFile);
+
 	// mesh file opening
-	SE::platform::filesystem::OsFile* objFile = sparkEngine.fileSystem.openFileRead("Sphere.obj", config.meshesKey);
+	SE::platform::filesystem::OsFile* objFile = sparkEngine.fileSystem.openFileRead("head.obj", config.meshesKey);
 
 	// mesh resource loading
 	SE::core::parser::text::wavefront::ObjParser objParser;
@@ -118,45 +141,66 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	// mesh reource mapping into MeshManager
 	SE::resource::ResourceHandle meshHandle = sparkEngine.meshManager.addResource(mesh, mesh.getName(), SE::resource::RMT_Dynamic);
 
-	int rowCount = 0;
-	int colCount = 0;
+	SE::engine::StaticMeshComponent* staticMesh = new SE::engine::StaticMeshComponent(meshHandle);
+	SE::engine::TransformComponent* transform = new SE::engine::TransformComponent(SE::core::math::Transform<float>());
+
+	SE::resource::Material tempMaterial;
+	tempMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
+	tempMaterial.params.metalness = 0.5;
+	tempMaterial.params.roughness = 0.5;
+	tempMaterial.params.specularity = 0.5;
+
+	SE::engine::MaterialComponent* materialComponent = new SE::engine::MaterialComponent(tempMaterial);
+
+	SE::core::ecs::Entity* gameObject = new SE::core::ecs::Entity();
+	gameObject->addComponent<SE::engine::StaticMeshComponent>(staticMesh);
+	gameObject->addComponent<SE::engine::TransformComponent>(transform);
+	gameObject->addComponent<SE::engine::MaterialComponent>(materialComponent);
+	transform->transform.position = SE::core::math::Vec3<float>(0.0f, 0.0f, -10.0f);
+	//transform->transform.scale3D = SE::core::math::Vec3<float>(0.12f, 0.12f, 0.12f);
+
+	sparkEngine.renderSystem.registerComponent(staticMesh);*/
 
 	// mesh components creation
-	for (int i = 0; i < 7 * 7; i++) {
-		SE::engine::StaticMeshComponent* staticMesh = new SE::engine::StaticMeshComponent(meshHandle);
-		SE::engine::TransformComponent* transform = new SE::engine::TransformComponent(SE::core::math::Transform<float>());
+		/*int rowCount = 0;
+		int colCount = 0;*/
 
-		if ((i) % 7 == 0) {
-			rowCount++;
-		}
+		//for (int i = 0; i < 7 * 7; i++) {
+		//	SE::engine::StaticMeshComponent* staticMesh = new SE::engine::StaticMeshComponent(meshHandle);
+		//	SE::engine::TransformComponent* transform = new SE::engine::TransformComponent(SE::core::math::Transform<float>());
 
-		SE::resource::Material tempMaterial;
-		tempMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
-		tempMaterial.params.metalness = 0.5;
-		tempMaterial.params.roughness = ((1.0f / 7.0f) * i - rowCount) + 1;
-		tempMaterial.params.specularity = 0.5;
+		//	if ((i) % 7 == 0) {
+		//		rowCount++;
+		//	}
 
-		SE::engine::MaterialComponent* materialComponent = new SE::engine::MaterialComponent(tempMaterial);
+		//	SE::resource::Material tempMaterial;
+		//	tempMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
+		//	tempMaterial.params.metalness = 0.5;
+		//	tempMaterial.params.roughness = ((1.0f / 7.0f) * i - rowCount) + 1;
+		//	tempMaterial.params.specularity = 0.5;
 
-		// game object creation
-		SE::core::ecs::Entity* gameObject = new SE::core::ecs::Entity();
-		gameObject->addComponent<SE::engine::StaticMeshComponent>(staticMesh);
-		gameObject->addComponent<SE::engine::TransformComponent>(transform);
-		gameObject->addComponent<SE::engine::MaterialComponent>(materialComponent);
-		transform->transform.position = SE::core::math::Vec3<float>((i % 7) * 0.35f, ((i) / 7) * -0.35f, -10.0f);
-		transform->transform.scale3D = SE::core::math::Vec3<float>(0.12f, 0.12f, 0.12f);
+		//	SE::engine::MaterialComponent* materialComponent = new SE::engine::MaterialComponent(tempMaterial);
 
-		sparkEngine.renderSystem.registerComponent(staticMesh);
-	}
+		//	// game object creation
+		//	SE::core::ecs::Entity* gameObject = new SE::core::ecs::Entity();
+		//	gameObject->addComponent<SE::engine::StaticMeshComponent>(staticMesh);
+		//	gameObject->addComponent<SE::engine::TransformComponent>(transform);
+		//	gameObject->addComponent<SE::engine::MaterialComponent>(materialComponent);
+		//	transform->transform.position = SE::core::math::Vec3<float>((i % 7) * 0.25f, ((i) / 7) * -0.25f, -10.0f);
+		//	transform->transform.scale3D = SE::core::math::Vec3<float>(0.12f, 0.12f, 0.12f);
 
-	// camera object creation
+		//	sparkEngine.renderSystem.registerComponent(staticMesh);
+		//}
+
+		// camera object creation
 	SE::engine::DebugCameraEntity cameraObject;
 
 	// light components creation
 	SE::engine::LightEntity lightObject;
-	lightObject.transform.transform.position = SE::core::math::Vec3<float>(0, 1, 1);
-	lightObject.transform.transform.rotation.setRotationAboutX(SE::core::math::toRadians<float>(45));
-	lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(45));
+	lightObject.transform.transform.position = SE::core::math::Vec3<float>(-4, 0, 10);
+	lightObject.transform.transform.rotation.setRotationAboutX(SE::core::math::toRadians<float>(-45));
+	lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(90));
+	lightObject.light.ambientPower = 0.001;
 
 	// component registration
 	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);
@@ -255,12 +299,12 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 				DispatchMessage(&msg);
 			}
 		} else {*/
-			if (rotate) {
-				//transform.transform.rotate(SE::core::math::Quat<float>(0.0f, SE::core::math::toRadians(0.01f) * delta, 0.0f, 1.0f));
-			}
+		if (rotate) {
+			//transform.transform.rotate(SE::core::math::Quat<float>(0.0f, SE::core::math::toRadians(0.01f) * delta, 0.0f, 1.0f));
+		}
 
-			delta = timer.getElapsedMs();
-			sparkEngine.update(*window.getGraphicsContext(), delta);
+		delta = timer.getElapsedMs();
+		sparkEngine.update(*window.getGraphicsContext(), delta);
 		//}
 	}
 

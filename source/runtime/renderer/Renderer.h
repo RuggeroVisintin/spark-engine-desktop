@@ -13,8 +13,10 @@
 class Renderer
 {
 public:
-	Renderer(SE::platform::backend::GLDevice* gfx)
+	Renderer(SE::platform::backend::GLDevice* gfx, unsigned int internalHRes, unsigned int internalVRes)
 		: mGfx(gfx)
+		, mInternalHRes(internalHRes)
+		, mInternalVRes(internalVRes)
 	{
 		mFrameBuffer.setAsFrameBuffer(mGfx);
 	}
@@ -34,8 +36,12 @@ private:
 	void							clearBuffers(command::ClearBuffers command);
 	void							useShaderProgram(command::UseShaderProgram command);
 	void							enableAdditiveBlending(command::EnableAdditiveBlending command);
+	void							setFramebuffer(command::SetFrameBuffer command);
+	void							useTexture(command::UseTexture command);
 
 private:
+	unsigned int					mInternalHRes;
+	unsigned int					mInternalVRes;
 	//void							swapBuffers();
 
 private:

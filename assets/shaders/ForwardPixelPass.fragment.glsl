@@ -3,24 +3,27 @@
 #define PI 3.14159265
 #define saturate(x) clamp(x, 0.0, 1.0);
 
+layout (binding = 0) uniform sampler2D shadowTexture;
+
 layout(std140) uniform MATERIAL
 {
 	vec3	kd;	                // the diffuse color of the surface
-	float	roughness;		// roughness of the material
+	float	roughness;			// roughness of the material
 
-	float	reflectance;	        // reflectance of the material;
-        float   metalness;
+	float	reflectance;	   	// reflectance of the material;
+    float   metalness;
 } uMaterial;
 
 layout(std140) uniform LIGHT
 {
-	vec3  color;			// the color of the light
-	float power;			// the power of the light;
+	vec3 	color;				// the color of the light
+	float	power;				// the power of the light;
 
-	vec3  position;			// the position of the light
-	float ambientPower;		// the power of the ambient term;
+	vec3  	position;			// the position of the light
+	float 	ambientPower;		// the power of the ambient term;
+	mat4 	shadowMatrix;		// the shadow matrix: Refactor in a specific uniform for shadows
 
-	vec3 direction;			// the direction of the light;
+	vec3	direction;			// the direction of the light;
 } uLight;
 
 in V2f
@@ -32,12 +35,14 @@ in V2f
 	vec3 eyePosition;		// position in eye space
 
 	vec2 texCoord;			// texCoord in model space	
+	vec4 shadowCoord;
 
 	mat4 modelViewProjection;
 	mat4 normalMatrix;
 	mat4 modelViewMatrix;
 	mat4 viewMatrix;
 } v2f;
+
 
 // outAttributes
 out vec4 FS_fragColor;
@@ -64,7 +69,7 @@ float Shlick_Fresnel(in float F0, in float LdotH)
 
 float Smith_Shlick_GGX(in float alpha, in float NdotL, in float NdotV)
 {
-    	float k = alpha / 2.0f;
+    float k = alpha / 2.0f;
 	return G1V(NdotL, k) * G1V(NdotV, k);
 }
 
@@ -76,7 +81,7 @@ float GGX_Brdf(in vec3 N, in vec3 V, in vec3 L, in float roughness, in float F0)
 	float NdotL = clamp(dot(N, L), 0.0f, 1.0f);
 	float NdotV = clamp(dot(N, V), 0.0f, 1.0f);
 	float NdotH = clamp(dot(N, H), 0.0f, 1.0f);
-    	float LdotH = clamp(dot(L, H), 0.0f, 1.0f);
+    float LdotH = clamp(dot(L, H), 0.0f, 1.0f);
 
 	float D = GGX_Distribution(alpha, NdotH);
 	float F = Shlick_Fresnel(F0, LdotH);
@@ -104,6 +109,16 @@ vec3 toLinearSpace(vec3 v) {
 	return pow(v, vec3(2.2f));
 }
 
+float ShadowCalculation(vec4 fragPosLightSpace)
+{
+    float visibility = 1.0;
+	if ( texture(shadowTexture, fragPosLightSpace.xy ).z < fragPosLightSpace.z){
+    	visibility = 0.5;
+	}
+
+	return visibility;
+}
+
 void main()
 {
 	vec3 N = normalize(v2f.eyeNormal);
@@ -120,12 +135,16 @@ void main()
 	float specular = 0.0f;
 	float ambient = uLight.ambientPower;
 
-	//if(diffuse > 0) {
+	if(diffuse > 0) {
 		specular = GGX_Brdf(N, V, L, roughness, F0);
-	//}
+	}
+
+	float shadow = ShadowCalculation(v2f.shadowCoord); 
 
 	float finalSpecular = saturate(specular);
 	vec3 specularColor = mix(uLight.color, uMaterial.kd, uMaterial.metalness);
-	vec3 finalColor = ambient + diffuse * uMaterial.kd + finalSpecular * specularColor * uLight.color * uLight.power;
-        FS_fragColor = vec4(finalColor, 1.0f);
+	vec3 finalColor = shadow * (ambient + diffuse) * uMaterial.kd + finalSpecular * specularColor * uLight.color * uLight.power;
+
+    FS_fragColor = vec4(finalColor, 1.0f);
+	//FS_fragColor = vec4(vec3(texture(shadowTexture, v2f.shadowCoord.xy).r), 1.0);
 }

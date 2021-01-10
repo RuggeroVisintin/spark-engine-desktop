@@ -15,8 +15,10 @@ namespace SE
 			mName = mesh.meshInfo.name;
 		}
 
-		void Mesh::loadFromObj(const SE::core::parser::text::wavefront::ObjMesh& mesh)
+		void Mesh::loadFromObj(const SE::core::parser::text::wavefront::ObjMesh& mesh, const std::string& name)
 		{
+			mName = name;
+
 			mVertices.resize(mesh.getTotalTrianglesCount() * 3);
 			mIndices.resize(mesh.getTotalTrianglesCount() * 3);
 

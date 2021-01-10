@@ -16,6 +16,7 @@ enum RenderCommandID
 	RC_UseShaderProgram			= 5,
 	RC_EnableAdditiveBlending	= 6,
 	RC_SetFrameBuffer			= 7,
+	RC_UseTexture				= 8
 };
 
 enum BlendingType
@@ -35,10 +36,10 @@ namespace command
 	{
 		SE::platform::backend::GLVertexBufferHandle			vertexBuffer;
 
-		unsigned int					verticesCount;
-		unsigned int					verticesOffset;
+		unsigned int										verticesCount;
+		unsigned int										verticesOffset;
 
-		static const RenderCommandID	ID = RenderCommandID::RC_Draw;
+		static const RenderCommandID						ID = RenderCommandID::RC_Draw;
 	};
 
 	struct DrawIndexed
@@ -46,20 +47,20 @@ namespace command
 		SE::platform::backend::GLIndexBufferHandle			indexBuffer;
 		SE::platform::backend::GLVertexBufferHandle			vertexBuffer;
 
-		unsigned int					indicesCount;
-		const void*						indicesOffset;
+		unsigned int										indicesCount;
+		const void*											indicesOffset;
 
-		static const RenderCommandID	ID = RenderCommandID::RC_DrawIndexed;
+		static const RenderCommandID						ID = RenderCommandID::RC_DrawIndexed;
 	};
 
 	struct CopyConstantBuffer
 	{
-		SE::platform::backend::GLUniformBufferHandle			constantBuffer;
+		SE::platform::backend::GLUniformBufferHandle		constantBuffer;
 
-		void*										bufferData;
-		unsigned int								bufferSize;
+		void*												bufferData;
+		unsigned int										bufferSize;
 
-		static const RenderCommandID	ID = RenderCommandID::RC_CopyConstBuffer;
+		static const RenderCommandID						ID = RenderCommandID::RC_CopyConstBuffer;
 	};
 
 	struct ClearBuffers
@@ -77,7 +78,7 @@ namespace command
 	{
 		SE::platform::backend::GLShaderProgramHandle			shaderProgram;
 
-		static const RenderCommandID	ID = RenderCommandID::RC_UseShaderProgram;
+		static const RenderCommandID							ID = RenderCommandID::RC_UseShaderProgram;
 	};
 
 	struct EnableAdditiveBlending
@@ -91,8 +92,21 @@ namespace command
 	struct SetFrameBuffer
 	{
 		GLuint							frameBufferHandle;
+		unsigned int					hResolution;
+		unsigned int					vResolution;
 
 		static const RenderCommandID	ID = RenderCommandID::RC_SetFrameBuffer;
+	};
+
+	struct UseTexture
+	{
+		unsigned int									textureHandle;
+		unsigned int									textureBinding;
+		unsigned int									textureLocation;
+
+		SE::platform::backend::GLShaderProgramHandle	shaderHandle;
+
+		static const RenderCommandID	ID = RenderCommandID::RC_UseTexture;
 	};
 }
 

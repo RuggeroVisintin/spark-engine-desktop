@@ -106,9 +106,10 @@ namespace SE
 		public:
 			//void											serialize(SpkMesh& mesh);
 			void											deSerialize(const SE::core::parser::binary::spk::SpkMesh& mesh);
-			void											loadFromObj(const SE::core::parser::text::wavefront::ObjMesh& mesh);
+			void											loadFromObj(const SE::core::parser::text::wavefront::ObjMesh& mesh, const std::string& name);
 
 			void											initGpuResources(SE::platform::backend::GLDevice* graphicsDevice);
+			//void											bindGpuResources(SE::platform::backend::GLDevice* graphicsDevice);
 			//void											freeGpuResources(SE::platform::beckend::GLDevice* graphicsDevice);
 
 			void											optimize();

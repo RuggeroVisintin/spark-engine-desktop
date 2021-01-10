@@ -7,7 +7,7 @@ namespace SE
 	namespace engine
 	{
 		SparkEngine::SparkEngine(GLDevice* gfx, EnginePathsConfig enginePaths)
-			: renderer(gfx)
+			: renderer(gfx, 1360, 768)
 			, mEnginePaths(enginePaths)
 			, fileSystem(mEnginePaths.rootPath)
 			, meshLaoder(&fileSystem, mEnginePaths.meshesKey)

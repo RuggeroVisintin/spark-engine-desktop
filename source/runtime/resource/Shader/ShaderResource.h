@@ -72,12 +72,21 @@ namespace SE
 			}
 
 		private:
+			static unsigned long generateBindingPoint () // Generate a valid ID
+			{
+				static unsigned int id = 0;
+
+				++id;
+
+				return id;
+			}
+
+		private:
 			std::string							mVertexShaderSource;
 			std::string							mFragmentShaderSource;
 
 			std::vector<ConstantDefinition>		mConstantDefinitions;
 			ShaderProgramHandle					mShaderProgramHandle;
-
 		};
 
 		typedef SE::core::memory::SharedPtr<Shader>		PShaderResource;

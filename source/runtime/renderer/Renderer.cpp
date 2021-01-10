@@ -44,7 +44,21 @@ void Renderer::endFrame(SE::platform::backend::GLContext& graphicsContext)
 
 			break;
 		}
+		case command::SetFrameBuffer::ID:
+		{
+			command::SetFrameBuffer* data = (command::SetFrameBuffer*)renderCommand.data;
+			setFramebuffer(*data);
+
+			break;
 		}
+		case command::UseTexture::ID:
+		{
+			command::UseTexture* data = (command::UseTexture*)renderCommand.data;
+			useTexture(*data);
+			break;
+		}
+		}
+		
 
 		delete renderCommand.data;
 	}
@@ -145,4 +159,24 @@ void Renderer::enableAdditiveBlending(command::EnableAdditiveBlending command)
 			glDepthFunc(GL_LEQUAL);
 		}
 	}
+}
+
+void Renderer::setFramebuffer(command::SetFrameBuffer command)
+{
+	if (command.frameBufferHandle) {
+		glViewport(0, 0, command.hResolution, command.vResolution);
+	}
+	else {
+		glViewport(0, 0, mInternalHRes, mInternalVRes);
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, command.frameBufferHandle);
+}
+
+void Renderer::useTexture(command::UseTexture command)
+{
+	glActiveTexture(GL_TEXTURE0 + command.textureBinding);
+	glBindTexture(GL_TEXTURE_2D, command.textureHandle);
+
+	mGfx->uniformInt(command.textureLocation, command.textureBinding);
 }

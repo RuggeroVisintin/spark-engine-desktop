@@ -2,6 +2,7 @@
 #define __RENDERSYSTEM_H__
 
 #include <vector>
+#include <ShadowBuffer.h>
 #include "../../Platform/Assertion/Assert.h"
 #include "../../Renderer/Renderer.h"
 
@@ -30,16 +31,17 @@ namespace SE
 			typedef SE::resource::ResourceManager<Shader>	ShaderManager;
 			typedef SE::resource::ResourceManager<Mesh>		MeshManager;
 
+			typedef SE::core::math::Mat4<float>				Mat4F;
+
 		public:
 			RenderSystem(Renderer* renderer, MeshManager* meshManager)
 				: mRenderer(renderer)
 				, mMeshManager(meshManager)
+				, mShadowBuffer(renderer, 1024, 1024)
 				, mTotalDeltaTime(0)
 			{
 				SPARK_ASSERT(mRenderer != nullptr, "RenderSystem::constructor - @param renderer - is null");
 				SPARK_ASSERT(mMeshManager != nullptr, "RenderSystem::constructor - @param meshManager - is null");
-
-
 			}
 
 			~RenderSystem()
@@ -59,6 +61,19 @@ namespace SE
 			void									update(const float& deltaTime);
 
 		private:
+			void									toggleAdditiveBlending(const bool& status) const;
+			void									clearBuffers(const CameraComponent& camera) const;
+			void									useShader(const Shader& shader) const;
+			void									drawCall(const SE::engine::StaticMeshComponent& mesh) const;
+
+			void									shadowMappingPass(const LightComponent& light) const;
+
+			void									viewProxySetup(const Mat4F& projection, const Mat4F& view, const SE::core::ecs::Entity& entity) const;
+			void									engineProxySetup() const;
+			void									materialSetup(const SE::core::ecs::Entity& entity) const;
+			void									lightSetup(const LightComponent& light) const;
+
+		private:
 			Renderer*								mRenderer;
 			MeshManager*							mMeshManager;
 
@@ -68,6 +83,8 @@ namespace SE
 
 			float									mTotalDeltaTime;
 
+			ShadowBuffer							mShadowBuffer;
+
 		public:
 			// not found has to be in resource manager
 			Material								notFoundMaterial;
@@ -75,6 +92,7 @@ namespace SE
 
 			/*Shader								forwardBasePassShader;*/
 			Shader									forwardLightingShader;
+			Shader									shadowMappingShader;
 
 			/*std::string							cameraConstantName;	*/		
 

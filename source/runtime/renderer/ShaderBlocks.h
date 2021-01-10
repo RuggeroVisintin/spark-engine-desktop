@@ -17,6 +17,8 @@ namespace SE
 			SE::core::math::Vec3<float>		position;
 			float							ambientPower;
 
+			SE::core::math::Mat4<float>		shadowMatrix;
+
 			SE::core::math::GpuVec3<float>	direction;
 			//SE::core::math::GpuVec3<float>	ambientColor;
 		};
@@ -35,6 +37,11 @@ namespace SE
 			SE::core::math::Mat4<float>		normalMatrix;
 			SE::core::math::Mat4<float>		modelViewMatrix;
 			SE::core::math::Mat4<float>		viewMatrix;
+		};
+
+		struct ShadowShaderBlockProxy
+		{
+			SE::core::math::Mat4<float>		shadowMatrix;
 		};
 
 		struct EngineShaderBlockProxy
