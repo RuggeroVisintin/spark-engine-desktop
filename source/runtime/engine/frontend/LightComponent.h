@@ -9,6 +9,11 @@ namespace SE
 {
 	namespace engine
 	{
+		enum LightType {
+			Directional = 0,
+			Point = 1
+		};
+
 		class LightComponent : public SE::core::ecs::Component
 		{
 			friend class								RenderSystem;
@@ -25,7 +30,8 @@ namespace SE
 			{
 			}
 
-			static SE::core::math::Frustum<float> getShadowProjection() {
+			SE::core::math::Frustum<float> getShadowProjection() const
+			{
 				return SE::core::math::Frustum<float>::createOrtho(-1, 1, -1, 1, 0.1f, 100.0f);
 			}
 			
@@ -38,6 +44,7 @@ namespace SE
 			float										power;
 			float										ambientPower;
 
+			LightType									type;
 		};
 	}
 }

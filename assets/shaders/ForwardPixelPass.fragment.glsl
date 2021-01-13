@@ -112,8 +112,7 @@ vec3 toLinearSpace(vec3 v) {
 float ShadowCalculation(vec4 fragPosLightSpace, float NdotL)
 {
     float visibility = 1.0;
-	float bias = 0.00005 * tan(acos(NdotL)); // cosTheta is dot( n,l ), clamped between 0 and 1
-	//bias = clamp(bias, 0, 0.01);
+	float bias = 0.00005 * tan(acos(NdotL)); 
 	if ( texture(shadowTexture, fragPosLightSpace.xy ).z < fragPosLightSpace.z - bias) {
     	visibility = 0;
 	}

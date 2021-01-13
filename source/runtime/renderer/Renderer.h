@@ -7,7 +7,6 @@
 #include "../Platform/GFX/OpenGL/GLContext.h"
 #include "../Platform/Assertion/Assert.h"
 #include "RenderCommand.h"
-#include "FrameBuffer.h"
 
 // next version will remove renderer class and instead it will use buckets
 class Renderer
@@ -18,7 +17,6 @@ public:
 		, mInternalHRes(internalHRes)
 		, mInternalVRes(internalVRes)
 	{
-		mFrameBuffer.setAsFrameBuffer(mGfx);
 	}
 
 	~Renderer()
@@ -60,9 +58,6 @@ private:
 	BlendingType											mLastBlendingType;
 
 	float													mLastClearColor[4];
-
-	// Keep hardcoded for now
-	FrameBufferBase											mFrameBuffer;
 };
 
 template <class Command>

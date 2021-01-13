@@ -35,21 +35,6 @@ public:
 		glDrawBuffer(GL_NONE);
 		glReadBuffer(GL_NONE);
 
-		/*glGenFramebuffers(1, &mFrameBufferHandle);
-		glBindFramebuffer(GL_FRAMEBUFFER, mFrameBufferHandle);
-
-		glGenTextures(1, &mTextureHandle);
-		glBindTexture(GL_TEXTURE_2D, mTextureHandle);
-		glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT32, hResolution, vResolution);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-
-		glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, mTextureHandle, 0);
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);*/
-
 		SPARK_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "ShadowBuffer::constructor - error during framebuffer initialization");
 	}
 
