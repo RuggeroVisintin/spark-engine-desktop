@@ -27,6 +27,7 @@ namespace SE
 				, ambientColor(0.0, 0.0, 0.0)
 				, power(1)
 				, ambientPower(0)
+				, shadowing(true)
 			{
 			}
 
@@ -45,6 +46,8 @@ namespace SE
 			float										ambientPower;
 
 			LightType									type;
+
+			bool										shadowing;
 		};
 	}
 }

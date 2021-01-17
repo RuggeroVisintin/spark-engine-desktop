@@ -21,8 +21,6 @@ layout(std140) uniform LIGHT
 
 	vec3  	position;			// the position of the light
 	float 	ambientPower;		// the power of the ambient term;
-	mat4 	shadowMatrix;		// the shadow matrix: Refactor in a specific uniform for shadows
-
 	vec3	direction;			// the direction of the light;
 } uLight;
 

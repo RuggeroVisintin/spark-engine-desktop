@@ -17,14 +17,8 @@ namespace SE
 			SE::core::math::Vec3<float>		position;
 			float							ambientPower;
 
-			SE::core::math::Mat4<float>		shadowMatrix; // TODO: remove from here
 			SE::core::math::GpuVec3<float>	direction;
 			//SE::core::math::GpuVec3<float>	ambientColor;
-		};
-
-		struct ShadowingShaderBlockProxy
-		{
-			SE::core::math::Mat4<float>		shadowMatrix;
 		};
 
 		// TODO: rename to PBRMaterialShaderBlockProxy

@@ -55,7 +55,7 @@ namespace SE
 			SparkEngine(GLDevice* gfx, EnginePathsConfig enginePaths);
 
 		public:
-			//void				initialize();
+			void				init();
 			//void				initialize(GLDevice* gfx, EnginePathsConfig enginePaths);
 
 			void				update(SE::platform::backend::GLContext& context, const float& deltaTime);

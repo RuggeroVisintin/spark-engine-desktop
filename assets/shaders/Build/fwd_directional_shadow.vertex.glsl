@@ -29,10 +29,13 @@ layout(std140) uniform LIGHT
 	vec3  	position;			// the position of the light. Not used for directional lights. 
                                 // TODO: maybe it can be moved to a specific block for positional lights
 	float 	ambientPower;		// the power of the ambient term;
-	mat4 	shadowMatrix;		// the shadow matrix: Refactor in a specific uniform for shadows
-
 	vec3	direction;			// the direction of the light;
 } uLight;
+
+layout(std140) uniform SHADOW
+{
+	mat4 shadowMatrix;
+} uShadow;
 
 out V2f
 {
@@ -63,7 +66,7 @@ void main()
 	v2f.eyePosition = (uCamera.modelViewMatrix * vec4(aPositions, 1.0)).xyz;
 
 	v2f.texCoord = aTexCoords;
-	v2f.shadowCoord = uLight.shadowMatrix * vec4(aPositions, 1.0);
+	v2f.shadowCoord = uShadow.shadowMatrix * vec4(aPositions, 1.0);
 
 	vec4 finalPos = uCamera.modelViewProjection * vec4(aPositions, 1.0);
 	gl_Position = finalPos;

@@ -42,10 +42,15 @@ namespace SE
 					lightConstData.name = "LIGHT";
 					lightConstData.size = sizeof(SE::renderer::LightShaderBlockProxy);
 
+					SE::resource::Shader::ConstantDefinition shadowConstData;
+					shadowConstData.name = "SHADOW";
+					shadowConstData.size = sizeof(SE::renderer::ShadowShaderBlockProxy);
+
 					this->addConstantData(viewConstData);
 					this->addConstantData(engineConstData);
 					this->addConstantData(materialConstData);
 					this->addConstantData(lightConstData);
+					this->addConstantData(shadowConstData);
 				}
 			};
 		}

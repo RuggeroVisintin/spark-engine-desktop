@@ -25,6 +25,11 @@ namespace SE
 			mLights.push_back(component);
 		}
 
+		void RenderSystem::registerShader(unsigned int shaderId, Shader shader)
+		{
+			this->mShadersMap.insert(std::pair<unsigned int, Shader>(shaderId, shader));
+		}
+
 		void RenderSystem::unregisterComponent(unsigned int uuid)
 		{
 			for (std::vector<StaticMeshComponent*>::const_iterator it = mStaticMeshes.begin();
@@ -65,44 +70,50 @@ namespace SE
 				SE::core::math::Mat4<float> projection = (*camera)->frustum.toMat4();
 				SE::core::math::Mat4<float> view = (*camera)->getContainer()->getComponent<SE::engine::TransformComponent>()->getLocalToWorld();
 
-				// disable additive blending for the first pass
+				Shader shadowMappingShader = (*this->mShadersMap.find(ShaderBits::ShadowMapping)).second;
+
+				// hardcode directional light for now
+				unsigned int currentShaderBits = ShaderBits::DirectionalLight;
 				this->toggleAdditiveBlending(false);
 
 				for (std::vector<LightComponent*>::const_iterator light = mLights.begin();
 					light != mLights.end(); light++)
 				{	
-					this->shadowMappingPass(**light);
+					this->shadowMappingPass(**light, shadowMappingShader);
+
+					if ((*light)->shadowing == true) {
+						currentShaderBits |= ShaderBits::Shadowing;
+					}
+
+					Shader lightingShader = (*this->mShadersMap.find(currentShaderBits)).second;
 
 					this->clearBuffers(**camera);
-					this->useShader(this->forwardLightingShader);
+					this->useShader(lightingShader);
 
 					for (std::vector<StaticMeshComponent*>::const_iterator mesh = mStaticMeshes.begin();
 						mesh != mStaticMeshes.end(); mesh++)
 					{
 						if ((*mesh)->doRendering) {
-							// view and material need to change only once per mesh
-							/*SE::core::math::Mat4<float> projection = (*light)->getShadowProjection().toMat4();
-							SE::core::math::Mat4<float> view = (*light)->getContainer()->getComponent<SE::engine::TransformComponent>()->getLocalToWorld();*/
-
 
 							SE::core::ecs::Entity* entity = (*mesh)->getContainer();
 
-							this->viewProxySetup(projection, view, *entity);
-							this->engineProxySetup();
-							this->materialSetup(*entity);
+							this->viewProxySetup(projection, view, *entity, lightingShader);
+							this->engineProxySetup(lightingShader);
+							this->materialSetup(*entity, lightingShader);
 
+							// TODO: if no lighting don't render the mesh
 							if ((*light)->doRendering) {
 								// enable additive blending after the first pass
 								if (light != mLights.begin()) {
 									this->toggleAdditiveBlending(true);
 								}
 
-								this->lightSetup(**light, (*mesh)->getContainer()->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix());
+								this->lightSetup(**light, (*mesh)->getContainer()->getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix(), lightingShader);
 
 								command::UseTexture* useTexture = mRenderer->pushRenderCommand<command::UseTexture>();
 								useTexture->textureHandle = mShadowBuffer.getTextureHandle();
 								useTexture->textureBinding = 0;
-								useTexture->shaderHandle = this->shadowMappingShader.getShaderProgramHandle();
+								useTexture->shaderHandle = shadowMappingShader.getShaderProgramHandle();
 
 								this->drawCall(**mesh);
 							}
@@ -151,7 +162,7 @@ namespace SE
 			command->indicesOffset = 0;
 		}
 
-		void RenderSystem::shadowMappingPass(const LightComponent& light) const
+		void RenderSystem::shadowMappingPass(const LightComponent& light, const Shader& shadowMappingShader) const
 		{
 			this->mShadowBuffer.startFrame();
 
@@ -159,7 +170,7 @@ namespace SE
 			clearBuffersCommand->bColorBuffer = false;
 			clearBuffersCommand->bDepthBuffer = true;
 
-			this->useShader(this->shadowMappingShader);
+			this->useShader(shadowMappingShader);
 
 			for (std::vector<StaticMeshComponent*>::const_iterator mesh = mStaticMeshes.begin();
 				mesh != mStaticMeshes.end(); mesh++)
@@ -187,7 +198,7 @@ namespace SE
 			this->mShadowBuffer.endFrame();
 		}
 
-		void RenderSystem::viewProxySetup(const Mat4F& projection, const Mat4F& view, const SE::core::ecs::Entity& entity) const
+		void RenderSystem::viewProxySetup(const Mat4F& projection, const Mat4F& view, const SE::core::ecs::Entity& entity, const Shader& shader) const
 		{
 			SE::renderer::ViewShaderBlockProxy* viewProxy = new SE::renderer::ViewShaderBlockProxy();
 			viewProxy->mvpMatrix = projection * (view * entity.getComponent<SE::engine::TransformComponent>()->transform.getTransformMatrix());
@@ -198,10 +209,10 @@ namespace SE
 			command::CopyConstantBuffer* viewConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
 			viewConstBuffer->bufferSize = sizeof(SE::renderer::ViewShaderBlockProxy);
 			viewConstBuffer->bufferData = viewProxy;
-			viewConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("VIEW").handle;
+			viewConstBuffer->constantBuffer = shader.getConstantDefinition("VIEW").handle;
 		}
 
-		void RenderSystem::engineProxySetup() const
+		void RenderSystem::engineProxySetup(const Shader& shader) const
 		{
 			SE::renderer::EngineShaderBlockProxy* engineProxy = new SE::renderer::EngineShaderBlockProxy();
 			engineProxy->deltaTime = mTotalDeltaTime;
@@ -209,10 +220,10 @@ namespace SE
 			command::CopyConstantBuffer* engineConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
 			engineConstBuffer->bufferSize = sizeof(SE::renderer::EngineShaderBlockProxy);
 			engineConstBuffer->bufferData = engineProxy;
-			engineConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("ENGINE").handle;
+			engineConstBuffer->constantBuffer = shader.getConstantDefinition("ENGINE").handle;
 		}
 
-		void RenderSystem::materialSetup(const SE::core::ecs::Entity& entity) const
+		void RenderSystem::materialSetup(const SE::core::ecs::Entity& entity, const Shader& shader) const
 		{
 			SE::renderer::MaterialShaderBlockProxy* materialProxy = new SE::renderer::MaterialShaderBlockProxy();
 
@@ -234,11 +245,24 @@ namespace SE
 			command::CopyConstantBuffer* materialConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
 			materialConstBuffer->bufferSize = sizeof(SE::renderer::MaterialShaderBlockProxy);
 			materialConstBuffer->bufferData = materialProxy;
-			materialConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("MATERIAL").handle;
+			materialConstBuffer->constantBuffer = shader.getConstantDefinition("MATERIAL").handle;
 		}
 
-		void RenderSystem::lightSetup(const LightComponent& light, const Mat4F& modelMatrix) const
+		void RenderSystem::lightSetup(const LightComponent& light, const Mat4F& modelMatrix, const Shader& shader) const
 		{
+			SE::renderer::LightShaderBlockProxy* lightProxy = new SE::renderer::LightShaderBlockProxy();
+			lightProxy->position = light.getContainer()->getComponent<TransformComponent>()->transform.position;
+			lightProxy->color = light.color;
+			lightProxy->direction = light.getContainer()->getComponent<TransformComponent>()->transform.rotation.rotateVector(SE::core::math::Vec3<float>::FORWARD_VECTOR);
+			lightProxy->power = light.power;
+			//lightProxy->shadowMatrix = shadowMatrix;
+			lightProxy->ambientPower = light.ambientPower;
+
+			command::CopyConstantBuffer* lightConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
+			lightConstBuffer->bufferSize = sizeof(SE::renderer::LightShaderBlockProxy);
+			lightConstBuffer->bufferData = lightProxy;
+			lightConstBuffer->constantBuffer = shader.getConstantDefinition("LIGHT").handle;
+
 			SE::core::math::Frustum<float> lightFurstum = light.getShadowProjection();
 			SE::core::math::Mat4<float> scaleBiasMatrix =
 				SE::core::math::Mat4<float>(
@@ -248,22 +272,13 @@ namespace SE
 					0.5f, 0.5f, 0.5f, 1.0f);
 			SE::core::math::Mat4<float> shadowMatrix = scaleBiasMatrix * lightFurstum.toMat4() * light.getContainer()->getComponent<TransformComponent>()->transform.getTransformMatrix() * modelMatrix;
 
-			SE::renderer::LightShaderBlockProxy* lightProxy = new SE::renderer::LightShaderBlockProxy();
-			lightProxy->position = light.getContainer()->getComponent<TransformComponent>()->transform.position;
-			lightProxy->color = light.color;
-			lightProxy->direction = light.getContainer()->getComponent<TransformComponent>()->transform.rotation.rotateVector(SE::core::math::Vec3<float>::FORWARD_VECTOR);
-			lightProxy->power = light.power;
-			lightProxy->shadowMatrix = shadowMatrix;
-			lightProxy->ambientPower = light.ambientPower;
+			SE::renderer::ShadowShaderBlockProxy* shadowProxy = new SE::renderer::ShadowShaderBlockProxy();
+			shadowProxy->shadowMatrix = shadowMatrix;
 
-			// TODO: pass shadow texture to shader
-
-			command::CopyConstantBuffer* lightConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
-			lightConstBuffer->bufferSize = sizeof(SE::renderer::LightShaderBlockProxy);
-			lightConstBuffer->bufferData = lightProxy;
-			lightConstBuffer->constantBuffer = forwardLightingShader.getConstantDefinition("LIGHT").handle;
-
-		
+			command::CopyConstantBuffer* shadowsConstBuffer = mRenderer->pushRenderCommand<command::CopyConstantBuffer>();
+			shadowsConstBuffer->bufferSize = sizeof(SE::renderer::ShadowShaderBlockProxy);
+			shadowsConstBuffer->bufferData = shadowProxy;
+			shadowsConstBuffer->constantBuffer = shader.getConstantDefinition("SHADOW").handle;
 		}
 	}
 }

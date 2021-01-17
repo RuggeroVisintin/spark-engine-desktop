@@ -38,8 +38,6 @@ namespace SE
 			fileSystem.addSearchPath(mEnginePaths.shadersKey, shaderSearchPath);
 			//fileSystem.addSearchPath(mEnginePaths.texturesKey, texturesSearchPath);
 
-			// TODO: init shaders
-			// Load all shaders inside the build folder hardcoding their map value
 			this->initShaders(gfx);
 
 			glEnable(GL_DEPTH_TEST);
@@ -58,8 +56,9 @@ namespace SE
 			OsFile* tempVertexFile = fileSystem.openFileRead("Build/fwd_shadowmapping.vertex.glsl", mEnginePaths.shadersKey);
 			OsFile* tempFragmentFile = fileSystem.openFileRead("Build/fwd_shadowmapping.fragment.glsl", mEnginePaths.shadersKey);
 
-			renderSystem.shadowMappingShader = SE::engine::resources::ShadowMappingShader(tempVertexFile, tempFragmentFile);
-			renderSystem.shadowMappingShader.initGpuResources(gfx);
+			SE::resource::Shader tempShader = SE::engine::resources::ShadowMappingShader(tempVertexFile, tempFragmentFile);
+			tempShader.initGpuResources(gfx);
+			renderSystem.registerShader(SE::engine::ShaderBits::ShadowMapping, tempShader);
 
 			fileSystem.closeFile(tempVertexFile);
 			fileSystem.closeFile(tempFragmentFile);
@@ -67,8 +66,9 @@ namespace SE
 			tempVertexFile = fileSystem.openFileRead("Build/fwd_directional_shadow.vertex.glsl", mEnginePaths.shadersKey);
 			tempFragmentFile = fileSystem.openFileRead("Build/fwd_directional_shadow.fragment.glsl", mEnginePaths.shadersKey);
 
-			renderSystem.forwardLightingShader = SE::engine::resources::LightingShaderBase(tempVertexFile, tempFragmentFile);
-			renderSystem.forwardLightingShader.initGpuResources(gfx);
+			tempShader = SE::engine::resources::LightingShaderBase(tempVertexFile, tempFragmentFile);
+			tempShader.initGpuResources(gfx);
+			renderSystem.registerShader(SE::engine::ShaderBits::DirectionalLight | SE::engine::ShaderBits::Shadowing, tempShader);
 
 			fileSystem.closeFile(tempVertexFile);
 			fileSystem.closeFile(tempFragmentFile);

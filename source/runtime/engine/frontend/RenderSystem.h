@@ -23,8 +23,11 @@ namespace SE
 		enum ShaderBits
 		{
 			// TODO:
-			DirectionalLighting = 0x0001,
-			Shadowing = 0x0002
+			DirectionalLight = 0x0001,
+			PointLight = 0x0002,
+			SpotLight = 0x0003,
+			ShadowMapping = 0x0004,
+			Shadowing = 0x0005
 		};
 
 		/**
@@ -46,7 +49,7 @@ namespace SE
 			RenderSystem(Renderer* renderer, MeshManager* meshManager)
 				: mRenderer(renderer)
 				, mMeshManager(meshManager)
-				, mShadowBuffer(renderer, 2048, 2048)
+				, mShadowBuffer(renderer, 1024, 1024)
 				, mTotalDeltaTime(0)
 			{
 				SPARK_ASSERT(mRenderer != nullptr, "RenderSystem::constructor - @param renderer - is null");
@@ -62,13 +65,9 @@ namespace SE
 			void									registerComponent(CameraComponent* component);
 			void									registerComponent(LightComponent* component);
 
-			void									registerShader(Shader shader) SPARK_NOT_IMPLEMENTED(void());
+			void									registerShader(unsigned int shaderId, Shader shader);
 
 			void									unregisterComponent(unsigned int uuid);
-			/**
-			* @TODO: use per material shader instead of forwardLightingShader
-			* because forward lighting is a technique of blending and not a shader or material per se
-			*/
 			void									update(const float& deltaTime);
 
 		private:
@@ -77,12 +76,12 @@ namespace SE
 			void									useShader(const Shader& shader) const;
 			void									drawCall(const SE::engine::StaticMeshComponent& mesh) const;
 
-			void									shadowMappingPass(const LightComponent& light) const;
+			void									shadowMappingPass(const LightComponent& light, const Shader& shadowMappingShader) const;
 
-			void									viewProxySetup(const Mat4F& projection, const Mat4F& view, const SE::core::ecs::Entity& entity) const;
-			void									engineProxySetup() const;
-			void									materialSetup(const SE::core::ecs::Entity& entity) const;
-			void									lightSetup(const LightComponent& light, const Mat4F& modelMatrix) const;
+			void									viewProxySetup(const Mat4F& projection, const Mat4F& view, const SE::core::ecs::Entity& entity, const Shader& shader) const;
+			void									engineProxySetup(const Shader& shader) const;
+			void									materialSetup(const SE::core::ecs::Entity& entity, const Shader& shader) const;
+			void									lightSetup(const LightComponent& light, const Mat4F& modelMatrix, const Shader& Shader) const;
 
 		private:
 			Renderer*								mRenderer;
@@ -102,13 +101,6 @@ namespace SE
 			// not found has to be in resource manager
 			Material								notFoundMaterial;
 			Material								defaultMaterial;
-
-			/*Shader								forwardBasePassShader;*/
-			Shader									forwardLightingShader;
-			Shader									shadowMappingShader;
-
-			/*std::string							cameraConstantName;	*/		
-
 		};
 	}	
 }
