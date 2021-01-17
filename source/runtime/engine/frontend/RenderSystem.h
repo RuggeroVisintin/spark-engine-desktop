@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <ShadowBuffer.h>
+
+#include <PlatformUtils.h>
 #include "../../Platform/Assertion/Assert.h"
 #include "../../Renderer/Renderer.h"
 
@@ -18,6 +20,13 @@ namespace SE
 {
 	namespace engine
 	{
+		enum ShaderBits
+		{
+			// TODO:
+			DirectionalLighting = 0x0001,
+			Shadowing = 0x0002
+		};
+
 		/**
 		* TODO: extend to allow the usage of different shading paths
 		* @brief - RenderSystem uses forward shading for now
@@ -53,6 +62,8 @@ namespace SE
 			void									registerComponent(CameraComponent* component);
 			void									registerComponent(LightComponent* component);
 
+			void									registerShader(Shader shader) SPARK_NOT_IMPLEMENTED(void());
+
 			void									unregisterComponent(unsigned int uuid);
 			/**
 			* @TODO: use per material shader instead of forwardLightingShader
@@ -80,6 +91,8 @@ namespace SE
 			std::vector<StaticMeshComponent*>		mStaticMeshes;
 			std::vector<CameraComponent*>			mCameras;	
 			std::vector<LightComponent*>			mLights;
+
+			std::map<unsigned int, Shader>			mShadersMap;
 
 			float									mTotalDeltaTime;
 

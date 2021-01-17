@@ -7,6 +7,8 @@ namespace SE
 	{
 		void Shader::setVertexSourceFromFile(SE::platform::filesystem::OsFile* vertexFile)
 		{
+			SPARK_ASSERT(vertexFile != NULL, "Shader::setVertexSourceFromFile - passed @param vertexFile is null");
+
 			mVertexShaderSource.reserve(vertexFile->getSize());
 			mVertexShaderSource.resize(vertexFile->getSize());
 			vertexFile->read(&mVertexShaderSource[0], vertexFile->getSize());
@@ -14,6 +16,8 @@ namespace SE
 
 		void Shader::setFragmentSourceFromFile(SE::platform::filesystem::OsFile* fragmentFile)
 		{
+			SPARK_ASSERT(fragmentFile != NULL, "Shader::setFragmentSourceFromFile - passed @param fragmentFile is null");
+
 			mFragmentShaderSource.reserve(fragmentFile->getSize());
 			mFragmentShaderSource.resize(fragmentFile->getSize());
 			fragmentFile->read(&mFragmentShaderSource[0], fragmentFile->getSize());

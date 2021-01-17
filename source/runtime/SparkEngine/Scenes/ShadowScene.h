@@ -17,43 +17,19 @@ namespace SE
 {
 	namespace sandbox
 	{
-		class ShadowScene
+		class SandboxScene
 		{
 		public:
-			ShadowScene(SE::engine::SparkEngine* engine,
+			SandboxScene(SE::engine::SparkEngine* engine,
 				SE::platform::backend::GLDevice* device,
 				const SE::engine::EnginePathsConfig& config)
 				: mSparkEngine(engine)
 				, mDevice(device)
 			{
-				initShaders(config);
 				initGameObjects(config);
 			}
 
 		private:
-			void initShaders(const SE::engine::EnginePathsConfig& config) {
-				SE::platform::filesystem::OsFile* shadowVertFile = mSparkEngine->fileSystem.openFileRead("Forward/Shadowing.vertex.glsl", config.shadersKey);
-				SE::platform::filesystem::OsFile* shadowFragFile = mSparkEngine->fileSystem.openFileRead("Forward/Shadowing.fragment.glsl", config.shadersKey);
-
-				// shader resource loading
-				SE::resource::Shader shadowShader;
-				shadowShader.setFragmentSourceFromFile(shadowFragFile);
-				shadowShader.setVertexSourceFromFile(shadowVertFile);
-
-				// view constant definition setup
-				SE::resource::Shader::ConstantDefinition shadowConstData;
-				shadowConstData.name = "SHADOW";
-				shadowConstData.size = sizeof(SE::renderer::ShadowShaderBlockProxy);
-
-				shadowShader.addConstantData(shadowConstData);
-				shadowShader.initGpuResources(mDevice);
-
-				mSparkEngine->fileSystem.closeFile(shadowVertFile);
-				mSparkEngine->fileSystem.closeFile(shadowFragFile);
-
-				mSparkEngine->renderSystem.shadowMappingShader = shadowShader;
-			}
-
 			void initGameObjects(const SE::engine::EnginePathsConfig& config) {
 				SE::platform::filesystem::OsFile* objFile = mSparkEngine->fileSystem.openFileRead("head.obj", config.meshesKey);
 

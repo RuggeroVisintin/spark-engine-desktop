@@ -60,6 +60,9 @@ namespace SE
 				break;
 			}
 			}
+
+			this->transform.transform.rotation.normalize();
+			this->transform.transform.position.normalize();
 		}
 
 		void DebugCameraEntity::onKeyUp(KeyboardEvent evt)

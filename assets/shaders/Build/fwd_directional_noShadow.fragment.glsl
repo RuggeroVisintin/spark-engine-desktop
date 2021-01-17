@@ -35,10 +35,8 @@ in V2f
 	vec3 eyePosition;		// position in eye space
 
 	vec2 texCoord;			// texCoord in model space	
-	vec4 shadowCoord;
 
 	mat4 modelViewProjection;
-	mat4 normalMatrix;
 	mat4 modelViewMatrix;
 	mat4 viewMatrix;
 } v2f;
@@ -131,8 +129,7 @@ void main()
 	float F0 = 0.16f * pow(uMaterial.reflectance, 2.0f);
 	float F1 = 1 - F0;
 
-	float shadow = ShadowCalculation(v2f.shadowCoord, NdotL); 
-	float diffuse = LambertDiffuse(NdotL) * shadow;
+	float diffuse = LambertDiffuse(NdotL);
 	diffuse *= (1 / PI) * F1;
 
 	float specular = 0.0f;
@@ -141,7 +138,6 @@ void main()
 	if(diffuse > 0) {
 		specular = GGX_Brdf(N, V, L, roughness, F0);
 	}
-
 
 	float finalSpecular = saturate(specular);
 	vec3 specularColor = mix(uLight.color, uMaterial.kd, uMaterial.metalness);

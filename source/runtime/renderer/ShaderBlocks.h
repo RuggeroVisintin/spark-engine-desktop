@@ -1,4 +1,4 @@
-#ifndef __SAHDERBLOCKS_H__
+#ifndef __SHADERBLOCKS_H__
 #define __SHADERBLOCKS_H__
 
 #include "../Core/math/Vec3.h"
@@ -17,17 +17,23 @@ namespace SE
 			SE::core::math::Vec3<float>		position;
 			float							ambientPower;
 
-			SE::core::math::Mat4<float>		shadowMatrix;
+			SE::core::math::Mat4<float>		shadowMatrix; // TODO: remove from here
 			SE::core::math::GpuVec3<float>	direction;
 			//SE::core::math::GpuVec3<float>	ambientColor;
 		};
 
+		struct ShadowingShaderBlockProxy
+		{
+			SE::core::math::Mat4<float>		shadowMatrix;
+		};
+
+		// TODO: rename to PBRMaterialShaderBlockProxy
 		struct MaterialShaderBlockProxy
 		{
 			SE::core::math::Vec3<float>		albedoColor;
-			float roughness;
-			float reflectance;
-			float metalness;
+			float							roughness;
+			float							reflectance;
+			float							metalness;
 		};
 
 		struct ViewShaderBlockProxy

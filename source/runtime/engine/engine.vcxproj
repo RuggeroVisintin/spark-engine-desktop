@@ -150,6 +150,8 @@
     <ClInclude Include="frontend\StaticMeshComponent.h" />
     <ClInclude Include="GameObjects\CameraEntity.h" />
     <ClInclude Include="GameObjects\LightEntity.h" />
+    <ClInclude Include="resources\shaders\LightingShaderBase.h" />
+    <ClInclude Include="resources\shaders\ShadowMappingShader.h" />
     <ClInclude Include="SparkEngine.h" />
     <ClInclude Include="Transform\TransformComponent.h" />
     <ClInclude Include="Transform\TransformSystem.h" />

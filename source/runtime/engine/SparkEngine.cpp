@@ -1,6 +1,9 @@
 #include "SparkEngine.h"
 
-#include "../Platform/Assertion/Assert.h"
+#include <ShaderBlocks.h>
+
+#include "resources/shaders/ShadowMappingShader.h"
+#include "resources/shaders/LightingShaderBase.h"
 
 namespace SE
 {
@@ -35,6 +38,10 @@ namespace SE
 			fileSystem.addSearchPath(mEnginePaths.shadersKey, shaderSearchPath);
 			//fileSystem.addSearchPath(mEnginePaths.texturesKey, texturesSearchPath);
 
+			// TODO: init shaders
+			// Load all shaders inside the build folder hardcoding their map value
+			this->initShaders(gfx);
+
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_FRAMEBUFFER_SRGB); // keep until render to texture is ready then switch to gamma correction in shader
 		}
@@ -44,6 +51,27 @@ namespace SE
 			controlSystem.update();
 			renderSystem.update(deltaTime);
 			renderer.endFrame(context);
+		}
+
+		void SparkEngine::initShaders(GLDevice* gfx)
+		{
+			OsFile* tempVertexFile = fileSystem.openFileRead("Build/fwd_shadowmapping.vertex.glsl", mEnginePaths.shadersKey);
+			OsFile* tempFragmentFile = fileSystem.openFileRead("Build/fwd_shadowmapping.fragment.glsl", mEnginePaths.shadersKey);
+
+			renderSystem.shadowMappingShader = SE::engine::resources::ShadowMappingShader(tempVertexFile, tempFragmentFile);
+			renderSystem.shadowMappingShader.initGpuResources(gfx);
+
+			fileSystem.closeFile(tempVertexFile);
+			fileSystem.closeFile(tempFragmentFile);
+
+			tempVertexFile = fileSystem.openFileRead("Build/fwd_directional_shadow.vertex.glsl", mEnginePaths.shadersKey);
+			tempFragmentFile = fileSystem.openFileRead("Build/fwd_directional_shadow.fragment.glsl", mEnginePaths.shadersKey);
+
+			renderSystem.forwardLightingShader = SE::engine::resources::LightingShaderBase(tempVertexFile, tempFragmentFile);
+			renderSystem.forwardLightingShader.initGpuResources(gfx);
+
+			fileSystem.closeFile(tempVertexFile);
+			fileSystem.closeFile(tempFragmentFile);
 		}
 	}
 }

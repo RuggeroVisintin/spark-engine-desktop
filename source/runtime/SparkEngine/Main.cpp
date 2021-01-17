@@ -62,104 +62,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 
 	// engine initialization
 	SE::engine::SparkEngine sparkEngine = SE::engine::SparkEngine(device, config);
-
-	// shader files opening
-	SE::platform::filesystem::OsFile* vertFile = sparkEngine.fileSystem.openFileRead("ForwardVertexPass.vertex.glsl", config.shadersKey);
-	SE::platform::filesystem::OsFile* fragFile = sparkEngine.fileSystem.openFileRead("ForwardPixelPass.fragment.glsl", config.shadersKey);
-
-	// shader resource loading
-	SE::resource::Shader shader;
-	shader.setFragmentSourceFromFile(fragFile);
-	shader.setVertexSourceFromFile(vertFile);
-
-	// view constant definition setup
-	SE::resource::Shader::ConstantDefinition viewConstData;
-	viewConstData.name = "VIEW";
-	viewConstData.size = sizeof(SE::renderer::ViewShaderBlockProxy);
-
-	SE::resource::Shader::ConstantDefinition engineConstData;
-	engineConstData.name = "ENGINE";
-	engineConstData.size = sizeof(SE::renderer::EngineShaderBlockProxy);
-
-	// material constant definition setup
-	SE::resource::Shader::ConstantDefinition materialConstData;
-	materialConstData.name = "MATERIAL";
-	materialConstData.size = sizeof(SE::renderer::MaterialShaderBlockProxy);
-
-	// light constant defitinition setup
-	SE::resource::Shader::ConstantDefinition lightConstData;
-	lightConstData.name = "LIGHT";
-	lightConstData.size = sizeof(SE::renderer::LightShaderBlockProxy);
-
-	// initialize shader gpu resources after constant definition addition
-	shader.addConstantData(viewConstData);
-	shader.addConstantData(materialConstData);
-	shader.addConstantData(lightConstData);
-	shader.addConstantData(engineConstData);
-	shader.initGpuResources(device);
-
-	// shader files closing
-	sparkEngine.fileSystem.closeFile(vertFile);
-	sparkEngine.fileSystem.closeFile(fragFile);
-
-	SE::sandbox::ShadowScene shadowScene = SE::sandbox::ShadowScene(&sparkEngine, device, config);
-
-	/*SE::platform::filesystem::OsFile* shadowVertFile = sparkEngine.fileSystem.openFileRead("Forward/Shadowing.vertex.glsl", config.shadersKey);
-	SE::platform::filesystem::OsFile* shadowFragFile = sparkEngine.fileSystem.openFileRead("Forward/Shadowing.fragment.glsl", config.shadersKey);
-
-	// shader resource loading
-	SE::resource::Shader shadowShader;
-	shadowShader.setFragmentSourceFromFile(shadowFragFile);
-	shadowShader.setVertexSourceFromFile(shadowVertFile);
-
-	// view constant definition setup
-	SE::resource::Shader::ConstantDefinition shadowConstData;
-	shadowConstData.name = "SHADOW";
-	shadowConstData.size = sizeof(SE::renderer::ShadowShaderBlockProxy);
-
-	shadowShader.addConstantData(shadowConstData);
-	shadowShader.initGpuResources(device);
-
-	sparkEngine.fileSystem.closeFile(shadowVertFile);
-	sparkEngine.fileSystem.closeFile(shadowFragFile);
-
-	// mesh file opening
-	SE::platform::filesystem::OsFile* objFile = sparkEngine.fileSystem.openFileRead("head.obj", config.meshesKey);
-
-	// mesh resource loading
-	SE::core::parser::text::wavefront::ObjParser objParser;
-	SE::core::parser::text::wavefront::ObjMesh objMesh;
-
-	objParser.readMesh(objMesh, objFile);
-	sparkEngine.fileSystem.closeFile(objFile);
-
-	SE::resource::Mesh mesh = SE::resource::Mesh();
-	mesh.keepDataCached = false;
-	mesh.loadFromObj(objMesh);
-	mesh.initGpuResources(device);
-
-	// mesh reource mapping into MeshManager
-	SE::resource::ResourceHandle meshHandle = sparkEngine.meshManager.addResource(mesh, mesh.getName(), SE::resource::RMT_Dynamic);
-
-	SE::engine::StaticMeshComponent* staticMesh = new SE::engine::StaticMeshComponent(meshHandle);
-	SE::engine::TransformComponent* transform = new SE::engine::TransformComponent(SE::core::math::Transform<float>());
-
-	SE::resource::Material tempMaterial;
-	tempMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
-	tempMaterial.params.metalness = 0.5;
-	tempMaterial.params.roughness = 0.5;
-	tempMaterial.params.specularity = 0.5;
-
-	SE::engine::MaterialComponent* materialComponent = new SE::engine::MaterialComponent(tempMaterial);
-
-	SE::core::ecs::Entity* gameObject = new SE::core::ecs::Entity();
-	gameObject->addComponent<SE::engine::StaticMeshComponent>(staticMesh);
-	gameObject->addComponent<SE::engine::TransformComponent>(transform);
-	gameObject->addComponent<SE::engine::MaterialComponent>(materialComponent);
-	transform->transform.position = SE::core::math::Vec3<float>(0.0f, 0.0f, -10.0f);
-	//transform->transform.scale3D = SE::core::math::Vec3<float>(0.12f, 0.12f, 0.12f);
-
-	sparkEngine.renderSystem.registerComponent(staticMesh);*/
+	SE::sandbox::SandboxScene shadowScene = SE::sandbox::SandboxScene(&sparkEngine, device, config);
 
 	// mesh components creation
 		/*int rowCount = 0;
@@ -206,7 +109,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);
 	sparkEngine.renderSystem.registerComponent(&cameraObject.camera);
 	sparkEngine.renderSystem.registerComponent(&lightObject.light);
-	sparkEngine.renderSystem.forwardLightingShader = shader;
 
 	sparkEngine.renderSystem.defaultMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 0, 0);
 	sparkEngine.renderSystem.defaultMaterial.params.metalness = 0.0f;

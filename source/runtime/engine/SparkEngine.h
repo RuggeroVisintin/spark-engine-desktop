@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../Platform/FileSystem/FileSystem.h"
+#include <FileSystem/FileSystem.h>
 
 #include "frontend\RenderSystem.h"
 #include "controls/ControlSystem.h"
@@ -46,6 +46,7 @@ namespace SE
 			typedef SE::resource::ShaderLoader					ShaderLoader;
 
 			typedef SE::platform::filesystem::OsFileSystem		FileSystem;
+			typedef SE::platform::filesystem::OsFile			OsFile;
 			typedef SE::platform::backend::GLDevice				GLDevice;
 
 			typedef SE::platform::input::Dispatcher				InputDisptacher;
@@ -58,7 +59,10 @@ namespace SE
 			//void				initialize(GLDevice* gfx, EnginePathsConfig enginePaths);
 
 			void				update(SE::platform::backend::GLContext& context, const float& deltaTime);
-			/*void				shutdown();*/							
+			/*void				shutdown();*/		
+
+		private:
+			void				initShaders(GLDevice* gfx);
 
 		private:
 			EnginePathsConfig	mEnginePaths;

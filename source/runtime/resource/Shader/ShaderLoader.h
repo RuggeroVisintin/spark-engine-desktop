@@ -30,7 +30,9 @@ namespace SE
 
 		public:
 			virtual Shader			loadResource(SE::platform::backend::GLDevice* gfx, const std::string& filePath) override { return Shader(); }
-				virtual void		loadResource(SE::platform::backend::GLDevice* gfx, Shader& shader, const std::string& filePath) override {}
+			virtual void			loadResource(SE::platform::backend::GLDevice* gfx, Shader& shader, const std::string& filePath) override {}
+
+			// TODO: compile shader
 
 		private:
 			OsFileSystem*			mFileSystem;
