@@ -106,7 +106,7 @@ vec3 toLinearSpace(vec3 v) {
 	return pow(v, vec3(2.2f));
 }
 
-float ShadowCalculation(vec4 fragPosLightSpace, float NdotL)
+float ShadowCalculation(vec4 fragPosLightSpace, float NdotL, float diffuse)
 {
     float visibility = 1.0;
 	float bias = 0.00005 * tan(acos(NdotL)); 
@@ -114,7 +114,7 @@ float ShadowCalculation(vec4 fragPosLightSpace, float NdotL)
     	visibility = 0;
 	}
 
-	return visibility;
+	return diffuse * visibility;
 }
 
 void main()
@@ -128,8 +128,7 @@ void main()
 	float F0 = 0.16f * pow(uMaterial.reflectance, 2.0f);
 	float F1 = 1 - F0;
 
-	float shadow = ShadowCalculation(v2f.shadowCoord, NdotL); 
-	float diffuse = LambertDiffuse(NdotL) * shadow;
+	float diffuse = ShadowCalculation(v2f.shadowCoord, NdotL, LambertDiffuse(NdotL)); 
 	diffuse *= (1 / PI) * F1;
 
 	float specular = 0.0f;

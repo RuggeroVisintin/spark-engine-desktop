@@ -21,17 +21,6 @@ layout(std140) uniform ENGINE
 	float deltaTime;
 } uEngine;
 
-layout(std140) uniform LIGHT
-{
-	vec3 	color;				// the color of the light
-	float	power;				// the power of the light;
-
-	vec3  	position;			// the position of the light. Not used for directional lights. 
-                                // TODO: maybe it can be moved to a specific block for positional lights
-	float 	ambientPower;		// the power of the ambient term;
-	vec3	direction;			// the direction of the light;
-} uLight;
-
 layout(std140) uniform SHADOW
 {
 	mat4 shadowMatrix;
