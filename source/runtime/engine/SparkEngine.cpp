@@ -4,6 +4,7 @@
 
 #include "resources/shaders/ShadowMappingShader.h"
 #include "resources/shaders/LightingShaderBase.h"
+#include "resources/shaders/LightingShaderWithShadows.h"
 
 namespace SE
 {
@@ -54,11 +55,8 @@ namespace SE
 		void SparkEngine::initShaders(GLDevice* gfx)
 		{
 			this->initShader<SE::engine::resources::ShadowMappingShader>(gfx, "Build/fwd_shadowmapping", SE::engine::ShaderBits::ShadowMapping);
-			this->initShader<SE::engine::resources::LightingShaderBase>(gfx, "Build/fwd_directional_shadow", SE::engine::ShaderBits::DirectionalLight | SE::engine::ShaderBits::Shadowing);
-			
-			// TODO: understand how to adapt shader
-			//this->initShader<SE::engine::resources::LightingShaderBase>(gfx, "Build/fwd_directional_noShadow", SE::engine::ShaderBits::DirectionalLight);
-
+			this->initShader<SE::engine::resources::LightingShaderWithShadows>(gfx, "Build/fwd_directional_shadow", SE::engine::ShaderBits::DirectionalLight | SE::engine::ShaderBits::Shadowing);
+			this->initShader<SE::engine::resources::LightingShaderBase>(gfx, "Build/fwd_directional_noShadow", SE::engine::ShaderBits::DirectionalLight);
 
 			/*OsFile* tempVertexFile = fileSystem.openFileRead("Build/fwd_shadowmapping.vertex.glsl", mEnginePaths.shadersKey);
 			OsFile* tempFragmentFile = fileSystem.openFileRead("Build/fwd_shadowmapping.fragment.glsl", mEnginePaths.shadersKey);

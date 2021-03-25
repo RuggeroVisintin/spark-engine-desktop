@@ -21,8 +21,6 @@ layout(std140) uniform LIGHT
 
 	vec3  	position;			// the position of the light
 	float 	ambientPower;		// the power of the ambient term;
-	mat4 	shadowMatrix;		// the shadow matrix: Refactor in a specific uniform for shadows
-
 	vec3	direction;			// the direction of the light;
 } uLight;
 
@@ -105,17 +103,6 @@ vec3 gammaCorrected(vec3 v) {
 
 vec3 toLinearSpace(vec3 v) {
 	return pow(v, vec3(2.2f));
-}
-
-float ShadowCalculation(vec4 fragPosLightSpace, float NdotL)
-{
-    float visibility = 1.0;
-	float bias = 0.00005 * tan(acos(NdotL)); 
-	if ( texture(shadowTexture, fragPosLightSpace.xy ).z < fragPosLightSpace.z - bias) {
-    	visibility = 0;
-	}
-
-	return visibility;
 }
 
 void main()

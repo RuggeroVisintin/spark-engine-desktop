@@ -1,5 +1,5 @@
-#ifndef __LIGHTINGSHADERBASE_H__
-#define __LIGHTINGSHADERBASE_H__
+#ifndef __LIGHTINGSHADERWITHSHADOWS_H__
+#define __LIGHTINGSHADERWITHSHADOWS_H__
 
 #include <Shader/ShaderResource.h>
 #include <FileSystem/File.h>
@@ -11,13 +11,13 @@ namespace SE
 	{
 		namespace resources
 		{
-			class LightingShaderBase : public SE::resource::Shader
+			class LightingShaderWithShadows : public SE::resource::Shader
 			{
 				typedef SE::resource::Shader				Super;
 				typedef SE::platform::filesystem::OsFile	OsFile;
 
 			public:
-				LightingShaderBase(OsFile* vertexFile, OsFile* fragmentFile)
+				LightingShaderWithShadows(OsFile* vertexFile, OsFile* fragmentFile)
 					: Super()
 				{
 					this->setVertexSourceFromFile(vertexFile);
@@ -42,14 +42,19 @@ namespace SE
 					lightConstData.name = "LIGHT";
 					lightConstData.size = sizeof(SE::renderer::LightShaderBlockProxy);
 
+					SE::resource::Shader::ConstantDefinition shadowConstData;
+					shadowConstData.name = "SHADOW";
+					shadowConstData.size = sizeof(SE::renderer::ShadowShaderBlockProxy);
+
 					this->addConstantData(viewConstData);
 					this->addConstantData(engineConstData);
 					this->addConstantData(materialConstData);
 					this->addConstantData(lightConstData);
+					this->addConstantData(shadowConstData);
 				}
 			};
 		}
 	}
 }
 
-#endif // !__LIGHTINGSHADERBASE_H__
+#endif // !__LIGHTINGSHADERWITHSHADOWS_H__

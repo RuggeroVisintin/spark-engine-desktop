@@ -104,7 +104,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	lightObject.transform.transform.rotation.setRotationAboutX(SE::core::math::toRadians<float>(-45));
 	//lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(90));
 	lightObject.light.ambientPower = 0.01;
-	//lightObject.light.shadowing = false;
+	lightObject.light.shadowing = false;
 
 	// component registration
 	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);
@@ -125,90 +125,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	bool running = true;
 
 	while (running) {
-		/*if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			if (msg.message == WM_QUIT)
-				running = false;
-			else if (msg.message == WM_KEYUP) {
-				switch (msg.wParam)
-				{
-					// to rotate stop object rotation
-				case 0x52: rotate = !rotate;
-					break;
-				}
-			}
-			else if (msg.message == WM_KEYDOWN) {
-				SE::core::math::Quat<float> rotation;
-
-
-				switch (msg.wParam)
-				{
-				case VK_F1:
-					sparkEngine.renderSystem.defaultMaterial.params.specularity += 0.01f;
-					if (sparkEngine.renderSystem.defaultMaterial.params.specularity > 1.0f) {
-						sparkEngine.renderSystem.defaultMaterial.params.specularity = 1.0f;
-					}
-					break;
-				case VK_F2:
-					sparkEngine.renderSystem.defaultMaterial.params.specularity -= 0.01f;
-					if (sparkEngine.renderSystem.defaultMaterial.params.specularity < 0.0f) {
-						sparkEngine.renderSystem.defaultMaterial.params.specularity = 0.0f;
-					}
-
-					break;
-				case VK_F3:
-					sparkEngine.renderSystem.defaultMaterial.params.roughness += 0.01f;
-					if (sparkEngine.renderSystem.defaultMaterial.params.roughness > 1.0f) {
-						sparkEngine.renderSystem.defaultMaterial.params.roughness = 1.0f;
-					}
-
-					break;
-				case VK_F4:
-					sparkEngine.renderSystem.defaultMaterial.params.roughness -= 0.01f;
-					if (sparkEngine.renderSystem.defaultMaterial.params.roughness < 0.0f) {
-						sparkEngine.renderSystem.defaultMaterial.params.roughness = 0.0f;
-					}
-
-					break;
-				}
-
-				if (msg.wParam == 0x57) {
-					cameraObject.getComponent<SE::engine::TransformComponent>()->transform.translate(cameraObject.getComponent<SE::engine::TransformComponent>()->transform.getForward() * 0.1f);
-				}
-
-				if (msg.wParam == 0x53) {
-					cameraObject.getComponent<SE::engine::TransformComponent>()->transform.translate(cameraObject.getComponent<SE::engine::TransformComponent>()->transform.getForward() * -0.1f);
-				}
-
-				if (msg.wParam == VK_RIGHT) {
-					rotation.setRotationAboutY(-0.01f);
-					cameraObject.getComponent<SE::engine::TransformComponent>()->transform.rotate(rotation);
-				}
-
-				if (msg.wParam == VK_LEFT) {
-					rotation.setRotationAboutY(0.01f);
-					cameraObject.getComponent<SE::engine::TransformComponent>()->transform.rotate(rotation);
-				}
-
-				if (msg.wParam == VK_SPACE) {
-					cameraObject.getComponent<SE::engine::TransformComponent>()->transform.translate(cameraObject.getComponent<SE::engine::TransformComponent>()->transform.getUp() * 0.01f);
-				}
-
-				if (msg.wParam == 17) {
-					cameraObject.getComponent<SE::engine::TransformComponent>()->transform.translate(cameraObject.getComponent<SE::engine::TransformComponent>()->transform.getUp() * -0.01f);
-				}
-			}
-			else {
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-		} else {*/
-		if (rotate) {
-			//transform.transform.rotate(SE::core::math::Quat<float>(0.0f, SE::core::math::toRadians(0.01f) * delta, 0.0f, 1.0f));
-		}
-
 		delta = timer.getElapsedMs();
 		sparkEngine.update(*window.getGraphicsContext(), delta);
-		//}
 	}
 
 	return msg.wParam;

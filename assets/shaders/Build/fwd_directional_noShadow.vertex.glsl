@@ -21,20 +21,7 @@ layout(std140) uniform ENGINE
 	float deltaTime;
 } uEngine;
 
-layout(std140) uniform LIGHT
-{
-	vec3 	color;				// the color of the light
-	float	power;				// the power of the light;
-
-	vec3  	position;			// the position of the light. Not used for directional lights. 
-                                // TODO: maybe it can be moved to a specific block for positional lights
-	float 	ambientPower;		// the power of the ambient term;
-	mat4 	shadowMatrix;		// the shadow matrix: Refactor in a specific uniform for shadows
-
-	vec3	direction;			// the direction of the light;
-} uLight;
-
-in V2f
+out V2f
 {
 	vec3 normal; 			// normal in model space
 	vec3 eyeNormal;			// normal in eye space
@@ -62,7 +49,6 @@ void main()
 	v2f.eyePosition = (uCamera.modelViewMatrix * vec4(aPositions, 1.0)).xyz;
 
 	v2f.texCoord = aTexCoords;
-	v2f.shadowCoord = uLight.shadowMatrix * vec4(aPositions, 1.0);
 
 	vec4 finalPos = uCamera.modelViewProjection * vec4(aPositions, 1.0);
 	gl_Position = finalPos;
