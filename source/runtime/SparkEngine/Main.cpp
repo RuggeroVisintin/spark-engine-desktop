@@ -104,6 +104,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int lCm
 	lightObject.transform.transform.rotation.setRotationAboutX(SE::core::math::toRadians<float>(-45));
 	//lightObject.transform.transform.rotation.setRotationAboutY(SE::core::math::toRadians<float>(90));
 	lightObject.light.ambientPower = 0.01;
+	//lightObject.light.shadowing = false;
 
 	// component registration
 	sparkEngine.controlSystem.registerComponent(&cameraObject.controls);

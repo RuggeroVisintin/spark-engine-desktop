@@ -55,14 +55,15 @@ namespace SE
 			SparkEngine(GLDevice* gfx, EnginePathsConfig enginePaths);
 
 		public:
-			void				init();
-			//void				initialize(GLDevice* gfx, EnginePathsConfig enginePaths);
+			void						init();
+			//void						initialize(GLDevice* gfx, EnginePathsConfig enginePaths);
 
-			void				update(SE::platform::backend::GLContext& context, const float& deltaTime);
-			/*void				shutdown();*/		
+			void						update(SE::platform::backend::GLContext& context, const float& deltaTime);
+			/*void						shutdown();*/		
 
 		private:
-			void				initShaders(GLDevice* gfx);
+			void						initShaders(GLDevice* gfx);
+			template <class T>  void	initShader(GLDevice* gfx, const std::string& sharerName, unsigned int shaderBits);
 
 		private:
 			EnginePathsConfig	mEnginePaths;

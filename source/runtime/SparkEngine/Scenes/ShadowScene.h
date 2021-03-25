@@ -81,7 +81,7 @@ namespace SE
 
 				SE::engine::StaticMeshComponent* planeStaticMesh = new SE::engine::StaticMeshComponent(planeMeshHandle);
 				SE::engine::TransformComponent* planeTransform = new SE::engine::TransformComponent(SE::core::math::Transform<float>());
-
+				
 				SE::resource::Material planeMaterial;
 				planeMaterial.params.diffuseColor = SE::core::math::Vec3<float>(1, 1, 1);
 

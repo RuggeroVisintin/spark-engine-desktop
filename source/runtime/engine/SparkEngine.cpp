@@ -53,7 +53,14 @@ namespace SE
 
 		void SparkEngine::initShaders(GLDevice* gfx)
 		{
-			OsFile* tempVertexFile = fileSystem.openFileRead("Build/fwd_shadowmapping.vertex.glsl", mEnginePaths.shadersKey);
+			this->initShader<SE::engine::resources::ShadowMappingShader>(gfx, "Build/fwd_shadowmapping", SE::engine::ShaderBits::ShadowMapping);
+			this->initShader<SE::engine::resources::LightingShaderBase>(gfx, "Build/fwd_directional_shadow", SE::engine::ShaderBits::DirectionalLight | SE::engine::ShaderBits::Shadowing);
+			
+			// TODO: understand how to adapt shader
+			//this->initShader<SE::engine::resources::LightingShaderBase>(gfx, "Build/fwd_directional_noShadow", SE::engine::ShaderBits::DirectionalLight);
+
+
+			/*OsFile* tempVertexFile = fileSystem.openFileRead("Build/fwd_shadowmapping.vertex.glsl", mEnginePaths.shadersKey);
 			OsFile* tempFragmentFile = fileSystem.openFileRead("Build/fwd_shadowmapping.fragment.glsl", mEnginePaths.shadersKey);
 
 			SE::resource::Shader tempShader = SE::engine::resources::ShadowMappingShader(tempVertexFile, tempFragmentFile);
@@ -69,6 +76,19 @@ namespace SE
 			tempShader = SE::engine::resources::LightingShaderBase(tempVertexFile, tempFragmentFile);
 			tempShader.initGpuResources(gfx);
 			renderSystem.registerShader(SE::engine::ShaderBits::DirectionalLight | SE::engine::ShaderBits::Shadowing, tempShader);
+
+			fileSystem.closeFile(tempVertexFile);
+			fileSystem.closeFile(tempFragmentFile);*/
+		}
+
+		template <class T> void SparkEngine::initShader(GLDevice* gfx, const std::string& shaderName, unsigned int shaderBits)
+		{
+			OsFile* tempVertexFile = fileSystem.openFileRead(shaderName + ".vertex.glsl", mEnginePaths.shadersKey);
+			OsFile* tempFragmentFile = fileSystem.openFileRead(shaderName + ".fragment.glsl", mEnginePaths.shadersKey);
+
+			SE::resource::Shader tempShader = T(tempVertexFile, tempFragmentFile);
+			tempShader.initGpuResources(gfx);
+			renderSystem.registerShader(shaderBits, tempShader);
 
 			fileSystem.closeFile(tempVertexFile);
 			fileSystem.closeFile(tempFragmentFile);
